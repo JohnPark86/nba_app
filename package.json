@@ -1,0 +1,30 @@
+{
+  "name": "nba_app",
+  "version": "1.0.0",
+  "description": "an app used to access nba.com endpoints",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "webpack-dev-server",
+    "build-js": "webpack --config ./webpack.config.js --verbose"
+  },
+  "keywords": [
+    "nba"
+  ],
+  "author": "John Park",
+  "license": "ISC",
+  "dependencies": {
+    "html-webpack-plugin": "^2.30.1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-loader": "^7.1.2",
+    "nba": "^3.5.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "webpack": "^3.5.5"
+  }
+}
