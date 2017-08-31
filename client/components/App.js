@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { NBA } from 'nba';
+const NBA = require("nba");
 
-//const NBA = require("nba");
-const curry = NBA.findPlayer('Stephen Curry');
+//const curry = NBA.findPlayer('Stephen Curry');
+console.log(NBA);
 
 export default class App extends React.Component {
 

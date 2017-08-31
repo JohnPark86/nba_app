@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "start": "webpack-dev-server",
-    "build-js": "webpack --config ./webpack.config.js --verbose"
+    "build-js": "webpack --config ./webpack.config.js --verbose --progress --colors"
   },
   "keywords": [
     "nba"
