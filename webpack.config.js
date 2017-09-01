@@ -14,7 +14,8 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
+    libraryTarget: "commonjs2"
   },
   module: {
     loaders: [
