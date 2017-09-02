@@ -14,6 +14,7 @@
   "author": "John Park",
   "license": "ISC",
   "dependencies": {
+    "babelify": "^7.3.0",
     "html-webpack-plugin": "^2.30.1"
   },
   "devDependencies": {
@@ -22,6 +23,9 @@
     "babel-core": "^6.26.0",
     "babel-env": "^2.4.1",
     "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "nba": "^3.5.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",

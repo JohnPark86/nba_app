@@ -22425,9 +22425,11 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var NBA = __webpack_require__(185);
-
+var test = __webpack_require__(185);
+var NBA = __webpack_require__(186);
+//import NBA from 'nba';
 //const curry = NBA.findPlayer('Stephen Curry');
+console.log(test);
 console.log(NBA);
 
 var _ref = _jsx('h1', {}, void 0, ' curry.firstName');
@@ -22446,7 +22448,7 @@ var App = function (_React$Component) {
 		value: function render() {
 			return _jsx('div', {
 				style: { textAlign: 'center' }
-			}, void 0, _ref);
+			}, void 0, _ref, _jsx('h1', {}, void 0, test.hello));
 		}
 	}]);
 
@@ -22457,6 +22459,17 @@ exports.default = App;
 
 /***/ }),
 /* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+	"hello": "world"
+};
+
+/***/ }),
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;(function(f){if(true){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.nba = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
