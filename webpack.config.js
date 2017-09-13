@@ -7,25 +7,20 @@ module.exports = {
   entry: './client/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'index_bundle.js',
-    libraryTarget: "commonjs2"
+    filename: 'index_bundle.js'
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000
   },
   module: {
     loaders: [
       { 
         test: /\.js$/, 
         loader: 'babel-loader', 
-        exclude: /node_modules/, 
-        query: {
-          presets: ['es2015']
-        } },
-      { 
-        test: /\.jsx$/, 
-        loader: 'babel-loader', 
-        exclude: /node_modules/, 
-        query: {
-          presets: ['es2015']
-        } }
+        exclude: /node_modules/
+      }
     ]
   },
 }
