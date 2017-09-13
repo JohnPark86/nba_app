@@ -4,7 +4,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: path.resolve(__dirname, "assets", "index"),
   output: {
     path: path.resolve('dist'),
     filename: 'index_bundle.js'

@@ -13,8 +13,9 @@ export default class App extends React.Component {
 	render() {
 		return(
 			<div style={{textAlign: 'center'}}>
-				<h1> curry.firstName</h1>
 				<h1>suck it {test.hello}</h1>
+				<h2> curry.firstName</h2>
+				
 			</div>);
 	}
 }
