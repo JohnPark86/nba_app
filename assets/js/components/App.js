@@ -1,11 +1,11 @@
 
 import React from 'react';
-var test = require('./test');
 var NBA = require("nba");
-//import NBA from 'nba';
-//const curry = NBA.findPlayer('Stephen Curry');
-console.log(test);
+
+const curry = NBA.findPlayer('Stephen Curry');
+
 console.log(NBA);
+console.log(curry);
 
 export default class App extends React.Component {
 
@@ -13,9 +13,8 @@ export default class App extends React.Component {
 	render() {
 		return(
 			<div style={{textAlign: 'center'}}>
-				<h1>suck it {test.hello}</h1>
-				<h2> curry.firstName</h2>
-				
+				<input type="text" />
+				<h2> {curry.fullName}</h2>
 			</div>);
 	}
 }
