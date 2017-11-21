@@ -14,7 +14,7 @@ export default class App extends React.Component {
 		return(
 			<div style={{textAlign: 'center'}}>
 				<input type="text" />
-				<h2> {curry.fullName}</h2>
+				<h2>{curry.fullName}</h2>
 			</div>);
 	}
 }

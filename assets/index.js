@@ -5,6 +5,6 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './js/components/App';
+import Input from './js/components/Input';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Input />, document.getElementById('root'));
