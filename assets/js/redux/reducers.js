@@ -1,12 +1,18 @@
 'use strict';
 
+import {combineReducers} from 'redux';
+
 const SEARCH_PARAM = 'SEARCH_PARAM';
 
-function searchReducer(state = false, action) {
+const searchReducer = (state = '', action) => {
     if (action.type === SEARCH_PARAM) {
-        return action.payload;
+        return action.text;
     }
     return state;
 }
 
+export const reducers = combineReducers({
+    searchReducer
+})
 
+export default reducers;

@@ -1,9 +1,9 @@
 'use-strict';
 
-export const addSearchParam = text => {
+export const addSearchParam = input => {
   return {
-    type: 'Search_Param',
-    id: searchParam,
-    text
+    type: 'SEARCH_PARAM',
+    id: 'searchParam',
+    text: input
   }
 }

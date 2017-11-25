@@ -1,10 +1,16 @@
-/*
-    ./client/index.js
-    webpack entry file
-*/
+'use-strict';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Input from './js/components/Input';
+import App from './js/App';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './js/redux/reducers'
 
-ReactDOM.render(<Input />, document.getElementById('root'));
+let store = createStore(reducers)
+
+ReactDOM.render(
+	<Provider store={store}>
+    	<App />
+  	</Provider>, document.getElementById('root')
+);
