@@ -1,15 +1,13 @@
 import React from 'react';
 import store from '../redux/store';
 import { connect } from 'react-redux';
-var NBA = require("nba");
 
-// let player;
-// store.subscribe( () => {
-// 		player = store.getState().searchReducer;
-// 		console.log("test1: ", player)
-// });
-
-//const curry = NBA.findPlayer(player);
+var nameStyle = {
+	fontSize: 70,
+	fontFamily: "Helvetica",
+	padding: 50,
+	color: "red"
+}
 
 class Info extends React.Component {
 	
@@ -19,16 +17,14 @@ class Info extends React.Component {
 
 	render(){
 		return(
-			<h2>{this.props.player}</h2>
+			<h2 style={nameStyle}>{this.props.player}</h2>
 		)
 	}
 }
 
-
 function mapStateToProps(state){
-	console.log("mapStateToProps")
 	return {
-    	player: state.searchReducer
+    	player: state.playerReducer
 	}
 }
 

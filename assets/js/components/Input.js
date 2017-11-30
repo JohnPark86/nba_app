@@ -1,5 +1,6 @@
 import React from 'react';
 import store from '../redux/store';
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { addSearchParam } from '../redux/actions';
 
@@ -20,7 +21,7 @@ class Input extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    store.dispatch(addSearchParam(this.state.player))
+    this.props.addSearchParam(this.state.player);                
   }
 
   render() {
@@ -35,14 +36,13 @@ class Input extends React.Component {
   }
 }
 
-function mapStateToProps(state){
-	console.log(state)
-	return {
-    	player: state.searchReducer
-	}
+function mapDispatchToProps(dispatch){
+    return bindActionCreators({addSearchParam}, dispatch);
 }
 
-export default connect(mapStateToProps,null)(Input);
+export default connect(null, mapDispatchToProps)(Input);       
+
+
 
 
 

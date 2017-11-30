@@ -4,7 +4,7 @@ import {combineReducers} from 'redux';
 
 const SEARCH_PARAM = 'SEARCH_PARAM';
 
-const searchReducer = (state = '', action) => {
+const playerReducer = (state = '', action) => {
     if (action.type === SEARCH_PARAM) {
         return action.text;
     }
@@ -12,7 +12,7 @@ const searchReducer = (state = '', action) => {
 }
 
 export const reducers = combineReducers({
-    searchReducer
+    playerReducer
 })
 
 export default reducers;

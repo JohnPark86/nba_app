@@ -3,7 +3,7 @@
 export const addSearchParam = input => {
   return {
     type: 'SEARCH_PARAM',
-    id: 'searchParam',
+    id: 'player',
     text: input
   }
 }
