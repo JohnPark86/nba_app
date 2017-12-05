@@ -1,6 +1,7 @@
 import React from 'react';
 import store from '../redux/store';
 import { connect } from 'react-redux';
+import NBA from 'nba';
 
 var nameStyle = {
 	fontSize: 70,
@@ -13,11 +14,18 @@ class Info extends React.Component {
 	
 	constructor(props) {
     	super(props);
+    	this.state={
+    		playerName : props.player
+
+    	};
 	}
 
 	render(){
 		return(
-			<h2 style={nameStyle}>{this.props.player}</h2>
+			<div>
+				<h2 style={nameStyle}>{NBA.findPlayer(this.props.player).firstName}</h2>
+				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).lastName}</h3>
+			</div>
 		)
 	}
 }
