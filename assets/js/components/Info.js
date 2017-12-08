@@ -17,34 +17,42 @@ const test = (player) => {
 }
 
 const getPlayerInfo = (player) => {
-	var returnInfo = "Player not found";
 	var player = NBA.findPlayer(player);
 	console.log("player: ", player);
-	
-	var info = NBA.stats.playerInfo({ PlayerID: player.playerId });
-	console.log("info1: ", info)
-	
-	Promise.resolve(info)
-		.then((value) => {
-		console.log("resolve: ", info);
-		console.log("value: ", value);
-	});
-} 
+
+	return NBA.stats.playerInfo({ PlayerID: player.playerId });
+}
 
 class Info extends React.Component {
-	
+
 	constructor(props) {
     	super(props);
     	this.state={
-    		playerName : props.player
+    		playerName : props.player,
+            playerInfo : ''
     	};
 	}
 
+    componentWillUpdate(nextProps, nextState) {
+
+    }
+
 	render(){
 		//test(this.props.player)
+        var playerInfo;
 		var info = getPlayerInfo(this.props.player);
+
+        Promise.resolve(info)
+            .then((value) => {
+                playerInfo = value;
+        }, (err) => {
+            console.warn(err);
+        });
+
 		console.log("info2: ", info);
-		return(
+		console.log("v: ", playerInfo);
+
+        return(
 			<div>
 				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).firstName}</h3>
 				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).lastName}</h3>
