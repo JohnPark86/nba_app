@@ -10,16 +10,8 @@ var nameStyle = {
 	color: "red"
 }
 
-const test = (player) => {
-	console.log(NBA.stats)
-	var foo = NBA.findPlayer(player)
-	NBA.stats.playerInfo({ PlayerID: foo.playerId }).then(console.log);
-}
-
 const getPlayerInfo = (player) => {
 	var player = NBA.findPlayer(player);
-	console.log("player: ", player);
-
 	return NBA.stats.playerInfo({ PlayerID: player.playerId });
 }
 
@@ -27,43 +19,67 @@ class Info extends React.Component {
 
 	constructor(props) {
     	super(props);
+
     	this.state={
     		playerName : props.player,
-            playerInfo : ''
+            playerInfo : props.playerInfo
     	};
+
+        this.logThis = this.logThis.bind(this);
 	}
 
     componentWillUpdate(nextProps, nextState) {
+        console.log('componentWillUpdate', this);
+        var playerInfo;
+        var info = getPlayerInfo(this.props.player);
+        Promise.resolve(info)
+            .then((playerInfo) => {
+                //console.log(value);
+              //  this.setState({playerInfo});
+            }, (err) => {
+                console.warn(err);
+            });
+    }
+
+    // place initialization code here
+    componentDidMount() {
+        console.log('componentDidMount', this);
+        var playerInfo;
+        var info = getPlayerInfo(this.props.player);
+        Promise.resolve(info)
+            .then((playerInfo) => {
+                //console.log(value);
+                this.setState({playerInfo});
+            }, (err) => {
+                console.warn(err);
+            });
 
     }
 
+    logThis() {
+        console.log('logThis', this.props);
+    }
+
 	render(){
-		//test(this.props.player)
-        var playerInfo;
-		var info = getPlayerInfo(this.props.player);
-
-        Promise.resolve(info)
-            .then((value) => {
-                playerInfo = value;
-        }, (err) => {
-            console.warn(err);
-        });
-
-		console.log("info2: ", info);
-		console.log("v: ", playerInfo);
-
         return(
 			<div>
 				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).firstName}</h3>
 				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).lastName}</h3>
-			</div>
+                <button onClick={this.logThis}>Update Player Stats</button>
+{/*                <h2 style={nameStyle}>{this.state.playerInfo.commonPlayerInfo[0].height}</h2>
+*/}			</div>
 		)
 	}
 }
 
+
+/*
+    @param - the redux state object
+*/
 function mapStateToProps(state){
 	return {
-    	player: state.playerReducer
+    	player: state.playerReducer,
+        playerInfo: getPlayerInfo(state.playerReducer)
 	}
 }
 
