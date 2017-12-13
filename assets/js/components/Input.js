@@ -21,7 +21,7 @@ class Input extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.addSearchParam(this.state.player);                
+    this.props.addSearchParam(this.state.player);
   }
 
   render() {
@@ -40,7 +40,7 @@ function mapDispatchToProps(dispatch){
     return bindActionCreators({addSearchParam}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Input);       
+export default connect(null, mapDispatchToProps)(Input);
 
 
 
