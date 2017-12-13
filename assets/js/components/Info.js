@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import NBA from 'nba';
 
 var nameStyle = {
-	fontSize: 70,
+	fontSize: 60,
 	fontFamily: "Helvetica",
-	padding: 50,
+	padding: 20,
 	color: "red"
 }
 
@@ -43,6 +43,22 @@ class Info extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps){
+        console.log("props: ",this.props);
+        console.log("next props: ",nextProps);
+        if(this.props.player != nextProps.player){
+            var info = getPlayerInfo(nextProps.player);
+            Promise.resolve(info)
+                .then((playerInfo) => {
+                    this.setState({
+                         playerInfo: playerInfo.commonPlayerInfo[0]
+                    });
+                }, (err) => {
+                    console.warn(err);
+            });
+        }
+    }
+
     logThis() {
         console.log('logThis', this.props);
         console.log('logState', this.state)
@@ -52,8 +68,9 @@ class Info extends React.Component {
         if(this.props.player != ""){
             return(
     			<div>
-    				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).firstName}</h3>
-    				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).lastName}</h3>
+    				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).firstName}
+    				          {NBA.findPlayer(this.props.player).lastName}</h3>
+                    <h3 style={nameStyle}>{this.state.playerInfo.height}</h3>
                     <button onClick={this.logThis}>Update Player Stats</button>
     		</div>
     		)
@@ -64,12 +81,13 @@ class Info extends React.Component {
 
 
 /*
+    Maps Redux state to component props.
     @param - the redux state object
 */
 function mapStateToProps(state){
 	return {
     	player: state.playerReducer,
-        //playerInfo: getPlayerInfo(state.playerReducer)
+      //  playerInfo: getPlayerInfo(state.playerReducer)
 	}
 }
 
