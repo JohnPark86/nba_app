@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import NBA from 'nba';
 
 var nameStyle = {
-	fontSize: 60,
+	fontSize: 50,
 	fontFamily: "Helvetica",
-	padding: 20,
+	padding: 15,
 	color: "red"
 }
 
@@ -23,13 +23,10 @@ class Info extends React.Component {
     		playerName : props.player,
             playerInfo : props.playerInfo
     	};
-
-        this.logThis = this.logThis.bind(this);
 	}
 
     //place initialization code here
     componentDidMount() {
-        console.log('componentDidMount', this);
         if(this.props.player != ""){
             var info = getPlayerInfo(this.props.player);
             Promise.resolve(info)
@@ -44,8 +41,6 @@ class Info extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log("props: ",this.props);
-        console.log("next props: ",nextProps);
         if(this.props.player != nextProps.player){
             var info = getPlayerInfo(nextProps.player);
             Promise.resolve(info)
@@ -59,19 +54,22 @@ class Info extends React.Component {
         }
     }
 
-    logThis() {
-        console.log('logThis', this.props);
-        console.log('logState', this.state)
-    }
-
 	render(){
-        if(this.props.player != ""){
+        console.log("info stats: ", this.state.playerInfo)
+        if(this.state.playerInfo != undefined){
             return(
     			<div>
-    				<h3 style={nameStyle}>{NBA.findPlayer(this.props.player).firstName}
-    				          {NBA.findPlayer(this.props.player).lastName}</h3>
-                    <h3 style={nameStyle}>{this.state.playerInfo.height}</h3>
-                    <button onClick={this.logThis}>Update Player Stats</button>
+    				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast}</h3>
+                    <p>Position:  {this.state.playerInfo.position}</p>
+                    <p>Team:  {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName}</p>
+                    <p>Number:  {this.state.playerInfo.jersey}</p>
+                    <p>Date Of Birth:  {this.state.playerInfo.birthdate}</p>
+                    <p>Height:  {this.state.playerInfo.height}</p>
+                    <p>Weight:  {this.state.playerInfo.weight}</p>
+                    <p>Seasons in league:  {this.state.playerInfo.seasonExp}</p>
+                    <p>Draft Year:  {this.state.playerInfo.draftYear}</p>
+                    <p>Draft Round:  {this.state.playerInfo.draftRound}</p>
+                    <p>Draft Number:  {this.state.playerInfo.draftNumber}</p>
     		</div>
     		)
         }
@@ -87,7 +85,6 @@ class Info extends React.Component {
 function mapStateToProps(state){
 	return {
     	player: state.playerReducer,
-      //  playerInfo: getPlayerInfo(state.playerReducer)
 	}
 }
 
