@@ -3,6 +3,7 @@ import store from '../redux/store';
 import { connect } from 'react-redux';
 import NBA from 'nba';
 
+//Styling.
 var nameStyle = {
 	fontSize: 50,
 	fontFamily: "Helvetica",
@@ -10,6 +11,17 @@ var nameStyle = {
 	color: "red"
 }
 
+var container = {
+    borderColor: "black",
+    borderWidth: 1,
+    borderStyle: "solid"
+}
+
+/*
+*   Returns player info object based on player id.
+*
+*   @param player The player name to information for.
+*/
 const getPlayerInfo = (player) => {
 	var player = NBA.findPlayer(player);
     return NBA.stats.playerInfo({ PlayerID: player.playerId });
@@ -40,6 +52,13 @@ class Info extends React.Component {
         }
     }
 
+    /*
+    *   Called everytime the props are updated which
+    *   in this case is everytime the redux state changes.
+    *   or every time the user searches.
+    *
+    *   @param nextProps - The props that are about to be set.
+    */
     componentWillReceiveProps(nextProps){
         if(this.props.player != nextProps.player){
             var info = getPlayerInfo(nextProps.player);
@@ -54,11 +73,11 @@ class Info extends React.Component {
         }
     }
 
+    //Called everytime playerInfo state value is set.
 	render(){
-        console.log("info stats: ", this.state.playerInfo)
         if(this.state.playerInfo != undefined){
             return(
-    			<div>
+    			<div style={container}>
     				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast}</h3>
                     <p>Position:  {this.state.playerInfo.position}</p>
                     <p>Team:  {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName}</p>
@@ -79,13 +98,12 @@ class Info extends React.Component {
 
 
 /*
-    Maps Redux state to component props.
-    @param - the redux state object
+*  Maps Redux state to component props.
+*  Called everytime the redux state updates.
+*  @param - the redux state object
 */
 function mapStateToProps(state){
-	return {
-    	player: state.playerReducer,
-	}
+	return { player: state.playerReducer }
 }
 
 export default connect(mapStateToProps,null)(Info);
