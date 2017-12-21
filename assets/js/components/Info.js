@@ -5,26 +5,46 @@ import NBA from 'nba';
 
 //Styling.
 var nameStyle = {
-	fontSize: 50,
-	fontFamily: "Helvetica",
-	padding: 15,
-	color: "red"
+	fontSize : 50,
+	fontFamily : "Helvetica",
+	padding : 15,
+	color : "red"
 }
 
 var container = {
-    borderColor: "black",
-    borderWidth: 1,
-    borderStyle: "solid"
+    borderColor : "black",
+    borderWidth : 1,
+    borderStyle : "solid",
+    width : "fit-content",
+    fontSize : 18,
+    lineHeight : 1
 }
 
 /*
 *   Returns player info object based on player id.
 *
-*   @param player The player name to information for.
+*   @param player - The player name to information for.
 */
 const getPlayerInfo = (player) => {
 	var player = NBA.findPlayer(player);
     return NBA.stats.playerInfo({ PlayerID: player.playerId });
+}
+
+/*
+*   Returns date formatted from ISO to 12-12-1234 .
+*
+*   @param d - The date in ISO format.
+*/
+const formatDate = (d) => {
+    var date = new Date(d);
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var dt = date.getDate();
+
+    dt = dt < 10 ? '0' + dt : dt;
+    month = month < 10 ? '0' + month : month;
+
+    return(month +'-'+ dt +'-'+ year);
 }
 
 class Info extends React.Component {
@@ -76,20 +96,23 @@ class Info extends React.Component {
     //Called everytime playerInfo state value is set.
 	render(){
         if(this.state.playerInfo != undefined){
+            var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
-    			<div style={container}>
+    			<div>
     				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast}</h3>
-                    <p>Position:  {this.state.playerInfo.position}</p>
-                    <p>Team:  {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName}</p>
-                    <p>Number:  {this.state.playerInfo.jersey}</p>
-                    <p>Date Of Birth:  {this.state.playerInfo.birthdate}</p>
-                    <p>Height:  {this.state.playerInfo.height}</p>
-                    <p>Weight:  {this.state.playerInfo.weight}</p>
-                    <p>Seasons in league:  {this.state.playerInfo.seasonExp}</p>
-                    <p>Draft Year:  {this.state.playerInfo.draftYear}</p>
-                    <p>Draft Round:  {this.state.playerInfo.draftRound}</p>
-                    <p>Draft Number:  {this.state.playerInfo.draftNumber}</p>
-    		</div>
+                    <div style={container}>
+                        <p><b>Position:</b>  {this.state.playerInfo.position}</p>
+                        <p><b>Team:</b>  {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName}</p>
+                        <p><b>Number:</b>  {this.state.playerInfo.jersey}</p>
+                        <p><b>Date Of Birth:</b> {birthDate} </p>
+                        <p><b>Height:</b>  {this.state.playerInfo.height}</p>
+                        <p><b>Weight:</b>  {this.state.playerInfo.weight}</p>
+                        <p><b>Seasons in league:</b>  {this.state.playerInfo.seasonExp}</p>
+                        <p><b>Draft Year:</b>  {this.state.playerInfo.draftYear}</p>
+                        <p><b>Draft Round:</b>  {this.state.playerInfo.draftRound}</p>
+                        <p><b>Draft Number:</b>  {this.state.playerInfo.draftNumber}</p>
+                    </div>
+                </div>
     		)
         }
         return null;
