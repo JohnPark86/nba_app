@@ -1,9 +1,16 @@
 import React from 'react';
+import { ControlLabel, FormGroup, FormControl } from 'react-bootstrap'
 import store from '../redux/store';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { addSearchParam } from '../redux/actions';
+import 'bootstrap/dist/css/bootstrap.css';
 
+var inputStyle = {
+    width: "70%",
+    margin: "3%"
+
+}
 
 class Input extends React.Component {
 
@@ -27,11 +34,14 @@ class Input extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          <input type="text" value={this.state.player} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+          <FormGroup bsSize="large">
+              <FormControl
+                type="text"
+                value={this.state.player}
+                onChange={this.handleChange}
+              />
+          </FormGroup>
+        </form>
     );
   }
 }

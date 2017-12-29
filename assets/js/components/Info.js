@@ -17,7 +17,9 @@ var container = {
     borderStyle : "solid",
     width : "fit-content",
     fontSize : 18,
-    lineHeight : 1
+    lineHeight : 1,
+    float: "left",
+    marginLeft: "3%"
 }
 
 /*
@@ -28,6 +30,12 @@ var container = {
 const getPlayerInfo = (player) => {
 	var player = NBA.findPlayer(player);
     return NBA.stats.playerInfo({ PlayerID: player.playerId });
+}
+
+const getPlayerProfile = (player) => {
+    var player = NBA.findPlayer(player);
+    //console.log(NBA.stats.playerProfile({ PlayerID: player.playerId }));
+    return NBA.stats.playerProfile({ PlayerID: player.playerId });
 }
 
 /*
@@ -53,7 +61,8 @@ class Info extends React.Component {
     	super(props);
     	this.state={
     		playerName : props.player,
-            playerInfo : props.playerInfo
+            playerInfo : props.playerInfo,
+            playerProfile : props.playerProfile
     	};
 	}
 
@@ -90,6 +99,18 @@ class Info extends React.Component {
                 }, (err) => {
                     console.warn(err);
             });
+
+            var profile = getPlayerProfile(nextProps.player);
+            Promise.resolve(profile)
+                .then((playerProfile) => {
+                    console.log(playerProfile)
+
+                    //this.setState({
+                    //     playerInfo: playerInfo.commonPlayerInfo[0]
+                    //});
+                }, (err) => {
+                    console.warn(err);
+            });
         }
     }
 
@@ -97,6 +118,8 @@ class Info extends React.Component {
 	render(){
         if(this.state.playerInfo != undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
+            //getInfo(this.props.player)
+            console.log(NBA)
             return(
     			<div>
     				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast}</h3>
