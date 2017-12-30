@@ -9,7 +9,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 var inputStyle = {
     width: "70%",
     margin: "3%"
-
 }
 
 class Input extends React.Component {
@@ -37,6 +36,7 @@ class Input extends React.Component {
           <FormGroup bsSize="large">
               <FormControl
                 type="text"
+                style={inputStyle}
                 value={this.state.player}
                 onChange={this.handleChange}
               />
