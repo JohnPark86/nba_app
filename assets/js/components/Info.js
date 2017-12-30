@@ -8,7 +8,8 @@ var nameStyle = {
 	fontSize : 50,
 	fontFamily : "Helvetica",
 	padding : 15,
-	color : "red"
+	color : "red",
+    marginLeft: "3%"
 }
 
 var container = {
@@ -19,7 +20,8 @@ var container = {
     fontSize : 18,
     lineHeight : 1,
     float: "left",
-    marginLeft: "3%"
+    marginLeft: "3%",
+    padding: "1%"
 }
 
 /*
@@ -30,12 +32,6 @@ var container = {
 const getPlayerInfo = (player) => {
 	var player = NBA.findPlayer(player);
     return NBA.stats.playerInfo({ PlayerID: player.playerId });
-}
-
-const getPlayerProfile = (player) => {
-    var player = NBA.findPlayer(player);
-    //console.log(NBA.stats.playerProfile({ PlayerID: player.playerId }));
-    return NBA.stats.playerProfile({ PlayerID: player.playerId });
 }
 
 /*
@@ -99,18 +95,6 @@ class Info extends React.Component {
                 }, (err) => {
                     console.warn(err);
             });
-
-            var profile = getPlayerProfile(nextProps.player);
-            Promise.resolve(profile)
-                .then((playerProfile) => {
-                    console.log(playerProfile)
-
-                    //this.setState({
-                    //     playerInfo: playerInfo.commonPlayerInfo[0]
-                    //});
-                }, (err) => {
-                    console.warn(err);
-            });
         }
     }
 
@@ -122,11 +106,9 @@ class Info extends React.Component {
             console.log(NBA)
             return(
     			<div>
-    				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast}</h3>
+    				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast} - {this.state.playerInfo.jersey} - {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName} </h3>
                     <div style={container}>
                         <p><b>Position:</b>  {this.state.playerInfo.position}</p>
-                        <p><b>Team:</b>  {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName}</p>
-                        <p><b>Number:</b>  {this.state.playerInfo.jersey}</p>
                         <p><b>Date Of Birth:</b> {birthDate} </p>
                         <p><b>Height:</b>  {this.state.playerInfo.height}</p>
                         <p><b>Weight:</b>  {this.state.playerInfo.weight}</p>

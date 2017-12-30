@@ -1,5 +1,6 @@
 'use-strict';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import Input from './components/Input';
 import Info from './components/Info';

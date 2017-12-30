@@ -1,14 +1,16 @@
 import React from 'react';
-import { ControlLabel, FormGroup, FormControl } from 'react-bootstrap'
 import store from '../redux/store';
+import { FormGroup, FormControl } from 'react-bootstrap'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { addSearchParam } from '../redux/actions';
-import 'bootstrap/dist/css/bootstrap.css';
+
 
 var inputStyle = {
-    width: "70%",
-    margin: "3%"
+    width: "80%",
+    margin: "3%",
+    borderWidth: 1,
+    borderColor: '#000000',
 }
 
 class Input extends React.Component {
@@ -39,6 +41,7 @@ class Input extends React.Component {
                 style={inputStyle}
                 value={this.state.player}
                 onChange={this.handleChange}
+                placeholder="Please Enter the Name of an NBA Player"
               />
           </FormGroup>
         </form>

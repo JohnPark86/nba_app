@@ -18,7 +18,8 @@ var container = {
     width : "fit-content",
     fontSize : 18,
     lineHeight : 1,
-    float: "left"
+    float: "left",
+    padding: "1%"
 }
 
 const getPlayerProfile = (player) => {
@@ -65,8 +66,9 @@ class Profile extends React.Component {
             var pro = getPlayerProfile(nextProps.player);
             Promise.resolve(pro)
                 .then((playerProfile) => {
+                    var target = playerProfile.seasonTotalsRegularSeason.length -1;
                     this.setState({
-                         playerProfile
+                         playerProfile : playerProfile.seasonTotalsRegularSeason[target]
                     });
                 }, (err) => {
                     console.warn(err);
@@ -77,13 +79,12 @@ class Profile extends React.Component {
     //Called everytime playerInfo state value is set.
     render(){
         if(this.state.playerProfile != undefined){
-            var birthDate;
-            // var birthDate = formatDate(this.state.playerInfo.birthdate);
-            //getInfo(this.props.player)
-            // console.log(NBA)
+            console.log(this.state.playerProfile)
             return(
                 <div style={container}>
-                    <h3 style={nameStyle}>player profile</h3>
+                    <h4><u>Current season</u></h4>
+                    <p><b>Assists:</b>  {this.state.playerProfile.ast}</p>
+                    <p><b>Blocks:</b> {this.state.playerProfile.blk} </p>
                 </div>
             )
         }
