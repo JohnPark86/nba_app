@@ -81,10 +81,10 @@ class Profile extends React.Component {
             console.log(this.state.playerProfile)
             return(
                 <div style={container}>
-                    <h4><u>Current season</u></h4>
+                    <h4><u>Current Season Averages</u></h4>
                     <p><b>Assists:</b>  {this.state.playerProfile.ast}</p>
                     <p><b>Blocks:</b> {this.state.playerProfile.blk} </p>
-                    <p><b>Rebounds (Def):</b> {this.state.playerProfile.dreb}</p> 
+                    <p><b>Rebounds (Def):</b> {this.state.playerProfile.dreb}</p>
                     <p><b>Rebounds (Off):</b> {this.state.playerProfile.oreb}</p>
                     <p><b>Rebounds (total):</b> {this.state.playerProfile.reb}</p>
                     <p><b>Points:</b> {this.state.playerProfile.pts} </p>
@@ -94,6 +94,11 @@ class Profile extends React.Component {
                                           &nbsp;({this.state.playerProfile.fg3Pct}%)</p>
                     <p><b>Free Throws:</b> {this.state.playerProfile.ftm} / {this.state.playerProfile.fta}
                                           &nbsp;({this.state.playerProfile.ftPct}%)</p>
+                    <p><b>Games Played:</b> {this.state.playerProfile.gp} </p>
+                    <p><b>Minutes Per Game:</b> {this.state.playerProfile.min} </p>
+                    <p><b>Personal Fouls:</b> {this.state.playerProfile.pf} </p>
+                    <p><b>Steals:</b> {this.state.playerProfile.stl} </p>
+                    <p><b>Turnovers:</b> {this.state.playerProfile.tov} </p>
                 </div>
             )
         }
