@@ -7,7 +7,7 @@ import { addSearchParam } from '../redux/actions';
 
 
 var inputStyle = {
-    width: "80%",
+    width: "70%",
     margin: "3%",
     borderWidth: 1,
     borderColor: '#000000',

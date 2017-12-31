@@ -24,7 +24,6 @@ var container = {
 
 const getPlayerProfile = (player) => {
     var player = NBA.findPlayer(player);
-    //console.log(NBA.stats.playerProfile({ PlayerID: player.playerId }));
     return NBA.stats.playerProfile({ PlayerID: player.playerId });
 }
 
@@ -85,6 +84,16 @@ class Profile extends React.Component {
                     <h4><u>Current season</u></h4>
                     <p><b>Assists:</b>  {this.state.playerProfile.ast}</p>
                     <p><b>Blocks:</b> {this.state.playerProfile.blk} </p>
+                    <p><b>Rebounds (Def):</b> {this.state.playerProfile.dreb}</p> 
+                    <p><b>Rebounds (Off):</b> {this.state.playerProfile.oreb}</p>
+                    <p><b>Rebounds (total):</b> {this.state.playerProfile.reb}</p>
+                    <p><b>Points:</b> {this.state.playerProfile.pts} </p>
+                    <p><b>Field Goals:</b> {this.state.playerProfile.fgm} / {this.state.playerProfile.fga}
+                                          &nbsp;({this.state.playerProfile.fgPct}%)</p>
+                    <p><b>3 Pointers:</b> {this.state.playerProfile.fG3M} / {this.state.playerProfile.fG3A}
+                                          &nbsp;({this.state.playerProfile.fg3Pct}%)</p>
+                    <p><b>Free Throws:</b> {this.state.playerProfile.ftm} / {this.state.playerProfile.fta}
+                                          &nbsp;({this.state.playerProfile.ftPct}%)</p>
                 </div>
             )
         }
