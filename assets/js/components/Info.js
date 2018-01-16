@@ -102,8 +102,6 @@ class Info extends React.Component {
 	render(){
         if(this.state.playerInfo != undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
-            //getInfo(this.props.player)
-            console.log(NBA)
             return(
     			<div>
     				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast} - {this.state.playerInfo.jersey} - {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName} </h3>
