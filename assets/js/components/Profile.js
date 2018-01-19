@@ -2,6 +2,7 @@ import React from 'react';
 import store from '../redux/store';
 import { connect } from 'react-redux';
 import NBA from 'nba';
+import * as colors from './teamColors.js'
 
 //Styling.
 var nameStyle = {
@@ -34,7 +35,8 @@ class Profile extends React.Component {
         super(props);
         this.state={
             playerName : props.player,
-            playerProfile : props.playerProfile
+            playerProfile : props.playerProfile,
+            team : ""
         };
     }
 
@@ -79,9 +81,12 @@ class Profile extends React.Component {
     render(){
         if(this.state.playerProfile != undefined){
             console.log(this.state.playerProfile)
+            console.log(colors)
+            var color1 = "colors." + this.state.playerProfile.teamAbbreviation + ".color1";
+            console.log(color1)
             return(
                 <div style={container}>
-                    <h4><u>Current Season Averages</u></h4>
+                    <h4><u style={{color: colors.BOS.color1 }}>Current Season Averages</u></h4>
                     <p><b>Assists:</b>  {this.state.playerProfile.ast}</p>
                     <p><b>Blocks:</b> {this.state.playerProfile.blk} </p>
                     <p><b>Rebounds (Def):</b> {this.state.playerProfile.dreb}</p>

@@ -100,6 +100,7 @@ class Info extends React.Component {
 
     //Called everytime playerInfo state value is set.
 	render(){
+        console.log("info: ", this.state.playerInfo)
         if(this.state.playerInfo != undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
