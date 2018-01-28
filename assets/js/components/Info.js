@@ -25,16 +25,6 @@ var container = {
 }
 
 /*
-*   Returns player info object based on player id.
-*
-*   @param player - The player name to information for.
-*/
-const getPlayerInfo = (player) => {
-	var player = NBA.findPlayer(player);
-    return NBA.stats.playerInfo({ PlayerID: player.playerId });
-}
-
-/*
 *   Returns date formatted from ISO to 12-12-1234 .
 *
 *   @param d - The date in ISO format.
@@ -56,11 +46,29 @@ class Info extends React.Component {
 	constructor(props) {
     	super(props);
     	this.state={
+            validPlayer : false,
     		playerName : props.player,
             playerInfo : props.playerInfo,
             playerProfile : props.playerProfile
     	};
+
+        this.getPlayerInfo = this.getPlayerInfo.bind(this);
 	}
+
+    /*
+    *   Returns player info object based on player id.
+    *
+    *   @param player - The player name to information for.
+    */
+    getPlayerInfo(player){
+        var player = NBA.findPlayer(player);
+        if(player !== undefined){
+            this.setState({
+                validPlayer : true
+            })
+        }
+        return NBA.stats.playerInfo({ PlayerID: player.playerId });
+    }
 
     //place initialization code here
     componentDidMount() {
@@ -86,7 +94,7 @@ class Info extends React.Component {
     */
     componentWillReceiveProps(nextProps){
         if(this.props.player != nextProps.player){
-            var info = getPlayerInfo(nextProps.player);
+            var info = this.getPlayerInfo(nextProps.player);
             Promise.resolve(info)
                 .then((playerInfo) => {
                     this.setState({
@@ -98,10 +106,15 @@ class Info extends React.Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        return !equals(nextProps, this.props);
+    }
+
     //Called everytime playerInfo state value is set.
 	render(){
         console.log("info: ", this.state.playerInfo)
-        if(this.state.playerInfo != undefined){
+        console.log(this.state)
+        if(this.state.validPlayer == true ){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
     			<div>
