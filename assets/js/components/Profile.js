@@ -23,12 +23,6 @@ var container = {
     padding: "1%"
 }
 
-const getPlayerProfile = (player) => {
-    var player = NBA.findPlayer(player);
-    return NBA.stats.playerProfile({ PlayerID: player.playerId });
-}
-
-
 class Profile extends React.Component {
 
     constructor(props) {
@@ -38,12 +32,29 @@ class Profile extends React.Component {
             playerProfile : props.playerProfile,
             team : ""
         };
+
+        this.getPlayerProfile = this.getPlayerProfile.bind(this);
+    }
+
+    getPlayerProfile(player){
+        var player = NBA.findPlayer(player);
+        if(player !== undefined){
+            this.setState({
+                validPlayer : true
+            })
+        return NBA.stats.playerProfile({ PlayerID: player.playerId });
+        }
+        else{
+            this.setState({
+                validPlayer : false
+            })
+        }
     }
 
     //place initialization code here
     componentDidMount() {
         if(this.props.player != ""){
-            var info = getPlayerProfile(this.props.player);
+            var info = this.getPlayerProfile(this.props.player);
             Promise.resolve(profile)
                 .then((playerProfile) => {
                     this.setState({
@@ -64,13 +75,15 @@ class Profile extends React.Component {
     */
     componentWillReceiveProps(nextProps){
         if(this.props.player != nextProps.player){
-            var pro = getPlayerProfile(nextProps.player);
+            var pro = this.getPlayerProfile(nextProps.player);
             Promise.resolve(pro)
                 .then((playerProfile) => {
-                    var target = playerProfile.seasonTotalsRegularSeason.length -1;
-                    this.setState({
-                         playerProfile : playerProfile.seasonTotalsRegularSeason[target]
-                    });
+                    if(playerProfile != undefined){
+                        var target = playerProfile.seasonTotalsRegularSeason.length -1;
+                        this.setState({
+                            playerProfile : playerProfile.seasonTotalsRegularSeason[target]
+                        });
+                    }
                 }, (err) => {
                     console.warn(err);
             });

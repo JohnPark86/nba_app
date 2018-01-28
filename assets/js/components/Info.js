@@ -66,8 +66,14 @@ class Info extends React.Component {
             this.setState({
                 validPlayer : true
             })
+            return NBA.stats.playerInfo({ PlayerID: player.playerId });
         }
-        return NBA.stats.playerInfo({ PlayerID: player.playerId });
+        else{
+            this.setState({
+                validPlayer : false
+            })
+        }
+        
     }
 
     //place initialization code here
@@ -76,6 +82,7 @@ class Info extends React.Component {
             var info = getPlayerInfo(this.props.player);
             Promise.resolve(info)
                 .then((playerInfo) => {
+
                     this.setState({
                          playerInfo
                     });
@@ -97,9 +104,11 @@ class Info extends React.Component {
             var info = this.getPlayerInfo(nextProps.player);
             Promise.resolve(info)
                 .then((playerInfo) => {
-                    this.setState({
-                         playerInfo: playerInfo.commonPlayerInfo[0]
-                    });
+                    if(info != undefined){
+                        this.setState({
+                            playerInfo: playerInfo.commonPlayerInfo[0]
+                        });
+                    }
                 }, (err) => {
                     console.warn(err);
             });
@@ -107,14 +116,13 @@ class Info extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        return !equals(nextProps, this.props);
+        return nextState.validPlayer;
     }
 
     //Called everytime playerInfo state value is set.
 	render(){
-        console.log("info: ", this.state.playerInfo)
-        console.log(this.state)
-        if(this.state.validPlayer == true ){
+        console.log("state: ", this.state);
+        if(this.state.validPlayer){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
     			<div>
