@@ -37,26 +37,20 @@ class Profile extends React.Component {
     }
 
     getPlayerProfile(player){
+        console.log("getPlayerProfile")
         var player = NBA.findPlayer(player);
         if(player !== undefined){
-            this.setState({
-                validPlayer : true
-            })
-        return NBA.stats.playerProfile({ PlayerID: player.playerId });
-        }
-        else{
-            this.setState({
-                validPlayer : false
-            })
+            return NBA.stats.playerProfile({ PlayerID: player.playerId });
         }
     }
 
     //place initialization code here
     componentDidMount() {
+        console.log("did mount");
         if(this.props.player != ""){
             var info = this.getPlayerProfile(this.props.player);
             Promise.resolve(profile)
-                .then((playerProfile) => {
+                .then( (playerProfile) => {
                     this.setState({
                          playerProfile
                     });
@@ -74,11 +68,12 @@ class Profile extends React.Component {
     *   @param nextProps - The props that are about to be set.
     */
     componentWillReceiveProps(nextProps){
+        console.log("componentWillReceiveProps")
         if(this.props.player != nextProps.player){
             var pro = this.getPlayerProfile(nextProps.player);
             Promise.resolve(pro)
                 .then((playerProfile) => {
-                    if(playerProfile != undefined){
+                    if(playerProfile !== undefined){
                         var target = playerProfile.seasonTotalsRegularSeason.length -1;
                         this.setState({
                             playerProfile : playerProfile.seasonTotalsRegularSeason[target]
@@ -90,13 +85,21 @@ class Profile extends React.Component {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        console.log("shouldComponentUpdate")
+        if(nextState.playerProfile !== undefined){
+            return true;
+        }
+        return false;
+    }
+
     //Called everytime playerInfo state value is set.
     render(){
-        if(this.state.playerProfile != undefined){
+        console.log("render")
+        if(this.state.playerProfile !== undefined){
             console.log(this.state.playerProfile)
             console.log(colors)
             var color1 = "colors." + this.state.playerProfile.teamAbbreviation + ".color1";
-            console.log(color1)
             return(
                 <div style={container}>
                     <h4><u style={{color: colors.BOS.color1 }}>Current Season Averages</u></h4>

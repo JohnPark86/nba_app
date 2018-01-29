@@ -46,7 +46,6 @@ class Info extends React.Component {
 	constructor(props) {
     	super(props);
     	this.state={
-            validPlayer : false,
     		playerName : props.player,
             playerInfo : props.playerInfo,
             playerProfile : props.playerProfile
@@ -62,18 +61,12 @@ class Info extends React.Component {
     */
     getPlayerInfo(player){
         var player = NBA.findPlayer(player);
-        if(player !== undefined){
-            this.setState({
-                validPlayer : true
-            })
-            return NBA.stats.playerInfo({ PlayerID: player.playerId });
+        if(player === undefined){
+            alert("Could not find a player by that name");
         }
         else{
-            this.setState({
-                validPlayer : false
-            })
+            return NBA.stats.playerInfo({ PlayerID: player.playerId });
         }
-        
     }
 
     //place initialization code here
@@ -82,7 +75,6 @@ class Info extends React.Component {
             var info = getPlayerInfo(this.props.player);
             Promise.resolve(info)
                 .then((playerInfo) => {
-
                     this.setState({
                          playerInfo
                     });
@@ -116,13 +108,15 @@ class Info extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        return nextState.validPlayer;
+        if(nextState.playerInfo !== undefined){
+            return true;
+        }
+        return false;
     }
 
     //Called everytime playerInfo state value is set.
 	render(){
-        console.log("state: ", this.state);
-        if(this.state.validPlayer){
+        if(this.state.playerInfo !== undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
     			<div>
