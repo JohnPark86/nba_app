@@ -16,30 +16,34 @@ module.exports = {
     },
     module: {
         loaders: [
-        {
-            test: /\.js$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/
-        },
-        {
-            test: /\.css$/,
-            use: [
-                {
-                    loader: "style-loader"
-                },
-                {
-                    loader: "css-loader"
-                }
-            ]
-        },
-        {
-            test: /\.eot|.svg|.woff|.woff2|.ttf$/,
-            loader: 'url-loader'
-        },
-        {
-            test: /\.(jpe?g|png|gif)$/i,
-            use: ['url-loader?limit=10000', 'img-loader']
-        }
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    }
+                ]
+            },
+            {
+                test: /\.eot|.svg|.woff|.woff2|.ttf$/,
+                use: ['url-loader']
+            },
+            {
+                test: /\.(jpe?g|png|gif)$/i,
+                use: ['url-loader?limit=10000', 'img-loader']
+            },
+            {
+                test: /\.scss$/,
+                use: ["style-loader","css-loader","sass-loader"]
+            }
         ]
     }
 }

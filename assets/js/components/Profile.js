@@ -2,7 +2,7 @@ import React from 'react';
 import store from '../redux/store';
 import { connect } from 'react-redux';
 import NBA from 'nba';
-import * as colors from './teamColors.js'
+import {} from '../../scss/teamColors.scss'
 
 //Styling.
 var nameStyle = {
@@ -30,7 +30,7 @@ class Profile extends React.Component {
         this.state={
             playerName : props.player,
             playerProfile : props.playerProfile,
-            team : ""
+            team : "hawks"
         };
 
         this.getPlayerProfile = this.getPlayerProfile.bind(this);
@@ -95,14 +95,11 @@ class Profile extends React.Component {
 
     //Called everytime playerInfo state value is set.
     render(){
-        console.log("render")
         if(this.state.playerProfile !== undefined){
-            console.log(this.state.playerProfile)
-            console.log(colors)
-            var color1 = "colors." + this.state.playerProfile.teamAbbreviation + ".color1";
+            console.log(this.state.playerProfile);
             return(
-                <div style={container}>
-                    <h4><u style={{color: colors.BOS.color1 }}>Current Season Averages</u></h4>
+                <div className={this.state.team}>
+                    <h4><u>Current Season Averages</u></h4>
                     <p><b>Assists:</b>  {this.state.playerProfile.ast}</p>
                     <p><b>Blocks:</b> {this.state.playerProfile.blk} </p>
                     <p><b>Rebounds (Def):</b> {this.state.playerProfile.dreb}</p>

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "dev-server": "webpack-dev-server --open",
-    "build-js": "webpack --config ./webpack.config.js --verbose --progress --colors"
+    "build": "webpack --config ./webpack.config.js --verbose --progress --colors"
   },
   "keywords": [
     "nba"
@@ -26,14 +26,17 @@
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.6",
     "nba": "^4.0.0",
+    "node-sass": "^4.7.2",
     "react": "^15.6.2",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^15.6.2",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
+    "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.5.5",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.7.1",
+    "webpack-sass-loader": "^2.2.1"
   }
 }
