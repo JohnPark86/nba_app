@@ -1,188 +1,390 @@
 
-.hawks{
-    border: 2px solid #C4D600;
+.ATL{
+    border: 2px solid rgb(196,214,0);
     width: fit-content;
     font-size: 20px;
     float: left;
     padding: 1%;
     background-color: rgba(224,58,62,.8);
     p{
-        color: #C4D600;
+        color: rgb(196,214,0);
         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     }
 }
 
-// .BOS{
-//     color1 : "#008248",
-//     color2 : "#BA9653",
-//     color3 : "#FFFFFF"
+.BOS{
+    border: 2px solid rgb(255,255,255);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(0,130,72,.7);
+    p{
+        color : rgb(255,255,255);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.BKN{
+    border: 2px solid rgb(255,255,255);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(0,0,0,.7);
+    p{
+        color : rgb(255,255,255);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.CHA{
+    border: 2px solid rgb(0,120,140);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(29,17,96,.9);
+    p{
+        color : rgb(0,120,140);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.CHI{
+    border: 2px solid rgb(255,255,255);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(206,17,65,.7);
+    p{
+        color : rgb(255,255,255);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.CLE{
+    border: 2px solid rgb(255,184,28);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(111,38,51,.8);
+    p{
+        color : rgb(255,184,28);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.DAL{
+    border: 2px solid rgb(196,206,212);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(0,125,197,.8);
+    p{
+        color : rgb(196,206,212);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.DEN{
+    border: 2px solid rgb(253,185,39);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(80,145,205, .8);
+    p{
+        color : rgb(253,185,39);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.DET{
+    border: 2px solid rgb(255,255,255);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(206,17,65,.7);
+    p{
+        color : rgb(255,255,255);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+.GSW{
+    border: 2px solid rgb(255,205,52);
+    width: fit-content;
+    font-size: 20px;
+    float: left;
+    padding: 1%;
+    background-color : rgba(36,62,144,.9);
+    p{
+        color : rgb(255,205,52);
+        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+}
+
+// .HOU{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const nets = {
-//     color1 : "#000000";
-//     color2 : "#FFFFFF";
-//     color3 : "#000000";
+// .IND{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const hornets = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .LAC{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const bulls = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .LAL{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const cavaliers = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .MEM{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const mavericks = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .MIA{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const nuggets = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .MIL{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const pistons = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .MIN{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const warriors = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .NOP{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const rockets = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .NYK{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const pacers = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .OKC{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const clippers = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .ORL{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const lakers = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .PHI{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const grizzlies = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .PHX{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const heat = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .POR{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const bucks = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .SAC{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const timberwolves = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .SAS{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const pelicans = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .TOR{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const knicks = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .UTA{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }
 
-// export const thunder = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const magic = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// //check on this one!!!!!!!!!!!!!!!!!!!!!!!!
-// export const sixers = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const suns = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const trailblazers = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const kings = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const spurs = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const raptors = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const jazz = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
-// }
-
-// export const wizards = {
-//     color1 : "",
-//     color2 : "",
-//     color3 : ""
+// .WAS{
+//     border: 2px solid #C4D600;
+//     width: fit-content;
+//     font-size: 20px;
+//     float: left;
+//     padding: 1%;
+//     background-color : rgba();
+//     p{
+//         color : rgb();
+//         text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+//     }
 // }

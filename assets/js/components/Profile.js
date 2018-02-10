@@ -30,7 +30,7 @@ class Profile extends React.Component {
         this.state={
             playerName : props.player,
             playerProfile : props.playerProfile,
-            team : "hawks"
+            team : " "
         };
 
         this.getPlayerProfile = this.getPlayerProfile.bind(this);
@@ -52,7 +52,8 @@ class Profile extends React.Component {
             Promise.resolve(profile)
                 .then( (playerProfile) => {
                     this.setState({
-                         playerProfile
+                         playerProfile : playerProfile,
+                         team : playerProfile.teamAbbreviation
                     });
                 }, (err) => {
                     console.warn(err);
@@ -74,9 +75,11 @@ class Profile extends React.Component {
             Promise.resolve(pro)
                 .then((playerProfile) => {
                     if(playerProfile !== undefined){
+                        console.log("pp: ", playerProfile)
                         var target = playerProfile.seasonTotalsRegularSeason.length -1;
                         this.setState({
-                            playerProfile : playerProfile.seasonTotalsRegularSeason[target]
+                            playerProfile : playerProfile.seasonTotalsRegularSeason[target],
+                            team : playerProfile.seasonTotalsRegularSeason[target].teamAbbreviation
                         });
                     }
                 }, (err) => {
@@ -97,6 +100,7 @@ class Profile extends React.Component {
     render(){
         if(this.state.playerProfile !== undefined){
             console.log(this.state.playerProfile);
+            console.log("State: ", this.state)
             return(
                 <div className={this.state.team}>
                     <h4><u>Current Season Averages</u></h4>
