@@ -37,7 +37,6 @@ class Profile extends React.Component {
     }
 
     getPlayerProfile(player){
-        console.log("getPlayerProfile")
         var player = NBA.findPlayer(player);
         if(player !== undefined){
             return NBA.stats.playerProfile({ PlayerID: player.playerId });
@@ -46,7 +45,6 @@ class Profile extends React.Component {
 
     //place initialization code here
     componentDidMount() {
-        console.log("did mount");
         if(this.props.player != ""){
             var info = this.getPlayerProfile(this.props.player);
             Promise.resolve(profile)
@@ -69,7 +67,6 @@ class Profile extends React.Component {
     *   @param nextProps - The props that are about to be set.
     */
     componentWillReceiveProps(nextProps){
-        console.log("componentWillReceiveProps")
         if(this.props.player != nextProps.player){
             var pro = this.getPlayerProfile(nextProps.player);
             Promise.resolve(pro)
@@ -89,7 +86,6 @@ class Profile extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
-        console.log("shouldComponentUpdate")
         if(nextState.playerProfile !== undefined){
             return true;
         }
@@ -99,8 +95,6 @@ class Profile extends React.Component {
     //Called everytime playerInfo state value is set.
     render(){
         if(this.state.playerProfile !== undefined){
-            console.log(this.state.playerProfile);
-            console.log("State: ", this.state)
             return(
                 <div className={this.state.team}>
                     <h4><u>Current Season Averages</u></h4>

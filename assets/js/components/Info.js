@@ -2,6 +2,8 @@ import React from 'react';
 import store from '../redux/store';
 import { connect } from 'react-redux';
 import NBA from 'nba';
+import {} from '../../scss/teamColors.scss'
+
 
 //Styling.
 var nameStyle = {
@@ -48,7 +50,8 @@ class Info extends React.Component {
     	this.state={
     		playerName : props.player,
             playerInfo : props.playerInfo,
-            playerProfile : props.playerProfile
+            playerProfile : props.playerProfile,
+            team: " "
     	};
 
         this.getPlayerInfo = this.getPlayerInfo.bind(this);
@@ -98,7 +101,8 @@ class Info extends React.Component {
                 .then((playerInfo) => {
                     if(info != undefined){
                         this.setState({
-                            playerInfo: playerInfo.commonPlayerInfo[0]
+                            playerInfo: playerInfo.commonPlayerInfo[0],
+                            team: playerInfo.commonPlayerInfo[0].teamAbbreviation
                         });
                     }
                 }, (err) => {
@@ -116,12 +120,13 @@ class Info extends React.Component {
 
     //Called everytime playerInfo state value is set.
 	render(){
+        console.log(this.state)
         if(this.state.playerInfo !== undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
     			<div>
     				<h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast} - {this.state.playerInfo.jersey} - {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName} </h3>
-                    <div style={container}>
+                    <div className={this.state.team}>
                         <p><b>Position:</b>  {this.state.playerInfo.position}</p>
                         <p><b>Date Of Birth:</b> {birthDate} </p>
                         <p><b>Height:</b>  {this.state.playerInfo.height}</p>
