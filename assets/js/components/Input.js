@@ -7,11 +7,19 @@ import { addSearchParam } from '../redux/actions';
 
 
 var inputStyle = {
-    width: "70%",
-    margin: "3%",
+    width : "40%",
+    marginLeft : "auto",
+    marginRight : "auto",
     borderWidth: 1,
     borderColor: '#000000',
 }
+
+var logo = {
+    display : "block",
+    marginLeft : "auto",
+    marginRight : "auto",
+    width : "6%"
+  }
 
 class Input extends React.Component {
 
@@ -32,19 +40,23 @@ class Input extends React.Component {
     this.props.addSearchParam(this.state.player);
   }
 
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-          <FormGroup bsSize="large">
-              <FormControl
-                type="text"
-                style={inputStyle}
-                value={this.state.player}
-                onChange={this.handleChange}
-                placeholder="Please Enter the Name of an NBA Player"
-              />
-          </FormGroup>
-        </form>
+        <div>
+            <img style={logo} src={require('../../img/logo.png')} />
+            <form onSubmit={this.handleSubmit}>
+                <FormGroup bsSize="large">
+                    <FormControl
+                        type="text"
+                        style={inputStyle}
+                        value={this.state.player}
+                        onChange={this.handleChange}
+                        placeholder="Please Enter the Name of an NBA Player"
+                    />
+                </FormGroup>
+            </form>
+        </div>
     );
   }
 }
