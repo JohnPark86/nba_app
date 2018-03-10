@@ -7,10 +7,10 @@ import {} from '../../scss/teamColors.scss'
 
 //Styling.
 var nameStyle = {
-	fontSize : 50,
-	fontFamily : "Helvetica",
-	padding : 15,
-	color : "red",
+    fontSize : 50,
+    fontFamily : "Helvetica",
+    padding : 15,
+    color : "red",
     marginLeft: "3%"
 }
 
@@ -26,36 +26,20 @@ var container = {
     padding: "1%"
 }
 
-/*
-*   Returns date formatted from ISO to 12-12-1234 .
-*
-*   @param d - The date in ISO format.
-*/
-const formatDate = (d) => {
-    var date = new Date(d);
-    var year = date.getFullYear();
-    var month = date.getMonth()+1;
-    var dt = date.getDate();
 
-    dt = dt < 10 ? '0' + dt : dt;
-    month = month < 10 ? '0' + month : month;
+class Card extends React.Component {
 
-    return(month +'-'+ dt +'-'+ year);
-}
-
-class Info extends React.Component {
-
-	constructor(props) {
-    	super(props);
-    	this.state={
-    		playerName : props.player,
+    constructor(props) {
+        super(props);
+        this.state={
+            playerName : props.player,
             playerInfo : props.playerInfo,
             playerProfile : props.playerProfile,
             team: " "
-    	};
+        };
 
         this.getPlayerInfo = this.getPlayerInfo.bind(this);
-	}
+    }
 
     /*
     *   Returns player info object based on player id.
@@ -119,27 +103,16 @@ class Info extends React.Component {
     }
 
     //Called everytime playerInfo state value is set.
-	render(){
-        console.log(this.state)
+    render(){
         if(this.state.playerInfo !== undefined){
-            var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
-    			<div>
-                    <div className={this.state.team}>
-                        <p><b>Position:</b>  {this.state.playerInfo.position}</p>
-                        <p><b>Date Of Birth:</b> {birthDate} </p>
-                        <p><b>Height:</b>  {this.state.playerInfo.height}</p>
-                        <p><b>Weight:</b>  {this.state.playerInfo.weight}</p>
-                        <p><b>Seasons in league:</b>  {this.state.playerInfo.seasonExp}</p>
-                        <p><b>Draft Year:</b>  {this.state.playerInfo.draftYear}</p>
-                        <p><b>Draft Round:</b>  {this.state.playerInfo.draftRound}</p>
-                        <p><b>Draft Number:</b>  {this.state.playerInfo.draftNumber}</p>
-                    </div>
+                <div>
+                    <h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast} - {this.state.playerInfo.jersey} - {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName} </h3>
                 </div>
-    		)
+            )
         }
         return null;
-	}
+    }
 }
 
 
@@ -149,7 +122,7 @@ class Info extends React.Component {
 *  @param - the redux state object
 */
 function mapStateToProps(state){
-	return { player: state.playerReducer }
+    return { player: state.playerReducer }
 }
 
-export default connect(mapStateToProps,null)(Info);
+export default connect(mapStateToProps,null)(Card);

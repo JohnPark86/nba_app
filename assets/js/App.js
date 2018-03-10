@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import Input from './components/Input';
 import Info from './components/Info';
+import Card from './components/Card';
 import Profile from './components/Profile';
 
 var outputcontainer = {
@@ -22,6 +23,7 @@ export default class App extends React.Component {
 			<div>
 				<Input />
                     <div style={outputcontainer}>
+                        <Card />
                         <Info />
                         <Profile />
                     </div>
