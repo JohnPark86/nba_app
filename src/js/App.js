@@ -22,8 +22,9 @@ export default class App extends React.Component {
 		return(
 			<div>
 				<Input />
+                <Card />
                     <div style={outputcontainer}>
-                        <Card />
+
                         <Info />
                         <Profile />
                     </div>

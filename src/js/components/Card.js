@@ -9,9 +9,18 @@ import axios from 'axios';
 var nameStyle = {
     fontSize : 50,
     fontFamily : "Helvetica",
-    padding : 15,
     color : "red",
-    marginLeft: "3%"
+}
+
+var cardContainer = {
+    display : "inline-block",
+    marginLeft : "5%",
+}
+
+var headshot = {
+
+    width : "35%",
+    float : "left"
 }
 
 class Card extends React.Component {
@@ -79,8 +88,8 @@ class Card extends React.Component {
         if(this.state.playerInfo !== undefined){
             var url = "https://nba-players.herokuapp.com/players/" + this.state.playerInfo.lastName +"/" + this.state.playerInfo.firstName;
             return(
-                <div>
-                    <img src={url} alt="Player headshot" />
+                <div style={cardContainer}>
+                    <img style={headshot} src={url} alt="Player headshot" />
                     <h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast} - {this.state.playerInfo.jersey} - {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName} </h3>
                 </div>
             )
