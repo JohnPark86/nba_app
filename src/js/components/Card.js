@@ -3,7 +3,7 @@ import store from '../redux/store';
 import { connect } from 'react-redux';
 import NBA from 'nba';
 import {} from '../../scss/teamColors.scss'
-
+import axios from 'axios';
 
 //Styling.
 var nameStyle = {
@@ -14,19 +14,6 @@ var nameStyle = {
     marginLeft: "3%"
 }
 
-var container = {
-    borderColor : "black",
-    borderWidth : 1,
-    borderStyle : "solid",
-    width : "fit-content",
-    fontSize : 18,
-    lineHeight : 1,
-    float: "left",
-    marginLeft: "3%",
-    padding: "1%"
-}
-
-
 class Card extends React.Component {
 
     constructor(props) {
@@ -34,7 +21,6 @@ class Card extends React.Component {
         this.state={
             playerName : props.player,
             playerInfo : props.playerInfo,
-            playerProfile : props.playerProfile,
             team: " "
         };
 
@@ -56,20 +42,6 @@ class Card extends React.Component {
         }
     }
 
-    //place initialization code here
-    componentDidMount() {
-        if(this.props.player != ""){
-            var info = getPlayerInfo(this.props.player);
-            Promise.resolve(info)
-                .then((playerInfo) => {
-                    this.setState({
-                         playerInfo
-                    });
-                }, (err) => {
-                    console.warn(err);
-            });
-        }
-    }
 
     /*
     *   Called everytime the props are updated which
@@ -83,7 +55,7 @@ class Card extends React.Component {
             var info = this.getPlayerInfo(nextProps.player);
             Promise.resolve(info)
                 .then((playerInfo) => {
-                    if(info != undefined){
+                    if(playerInfo != undefined){
                         this.setState({
                             playerInfo: playerInfo.commonPlayerInfo[0],
                             team: playerInfo.commonPlayerInfo[0].teamAbbreviation
@@ -105,8 +77,10 @@ class Card extends React.Component {
     //Called everytime playerInfo state value is set.
     render(){
         if(this.state.playerInfo !== undefined){
+            var url = "https://nba-players.herokuapp.com/players/" + this.state.playerInfo.lastName +"/" + this.state.playerInfo.firstName;
             return(
                 <div>
+                    <img src={url} alt="Player headshot" />
                     <h3 style={nameStyle}>{this.state.playerInfo.displayFirstLast} - {this.state.playerInfo.jersey} - {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName} </h3>
                 </div>
             )
