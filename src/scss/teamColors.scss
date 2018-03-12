@@ -1,390 +1,335 @@
-
-.ATL{
-    border: 2px solid rgb(196,214,0);
+.container{
     width: fit-content;
     font-size: 20px;
     float: left;
-    padding: 1%;
-    background-color: rgba(224,58,62,.8);
-    p{
-        color: rgb(196,214,0);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    padding: 0;
+
+    .ATL{
+        padding: 3%;
+        border-radius: 6%;
+        border: 2px solid rgb(196,214,0);
+        background-color: rgba(224,58,62,.8);
+        p{
+            color: rgb(196,214,0);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.BOS{
-    border: 2px solid rgb(255,255,255);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,130,72,.7);
-    p{
-        color : rgb(255,255,255);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .BOS{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,255,255);
+        background-color : rgba(0,130,72,.7);
+        p{
+            color : rgb(255,255,255);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.BKN{
-    border: 2px solid rgb(255,255,255);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,0,0,.7);
-    p{
-        color : rgb(255,255,255);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .BKN{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,255,255);
+        background-color : rgba(0,0,0,.7);
+        p{
+            color : rgb(255,255,255);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.CHA{
-    border: 2px solid rgb(0,120,140);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(29,17,96,.9);
-    p{
-        color : rgb(0,120,140);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .CHA{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(0,120,140);
+        background-color : rgba(29,17,96,.9);
+        p{
+            color : rgb(0,120,140);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.CHI{
-    border: 2px solid rgb(255,255,255);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(206,17,65,.7);
-    p{
-        color : rgb(255,255,255);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .CHI{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,255,255);
+        background-color : rgba(206,17,65,.7);
+        p{
+            color : rgb(255,255,255);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.CLE{
-    border: 2px solid rgb(255,184,28);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(111,38,51,.8);
-    p{
-        color : rgb(255,184,28);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .CLE{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,184,28);
+        background-color : rgba(111,38,51,.8);
+        p{
+            color : rgb(255,184,28);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.DAL{
-    border: 2px solid rgb(196,206,212);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,125,197,.8);
-    p{
-        color : rgb(196,206,212);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .DAL{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(196,206,212);
+        background-color : rgba(0,125,197,.8);
+        p{
+            color : rgb(196,206,212);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.DEN{
-    border: 2px solid rgb(253,185,39);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(80,145,205, .8);
-    p{
-        color : rgb(253,185,39);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .DEN{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(253,185,39);
+        background-color : rgba(80,145,205, .8);
+        p{
+            color : rgb(253,185,39);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.DET{
-    border: 2px solid rgb(255,255,255);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(206,17,65,.7);
-    p{
-        color : rgb(255,255,255);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .DET{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,255,255);
+        background-color : rgba(206,17,65,.7);
+        p{
+            color : rgb(255,255,255);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.GSW{
-    border: 2px solid rgb(255,205,52);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(36,62,144,.9);
-    p{
-        color : rgb(255,205,52);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .GSW{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,205,52);
+        background-color : rgba(36,62,144,.9);
+        p{
+            color : rgb(255,205,52);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.HOU{
-    border: 2px solid rgb(253,185,39);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(206,17,65,.8);
-    p{
-        color : rgb(253,185,39);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .HOU{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(253,185,39);
+        background-color : rgba(206,17,65,.8);
+        p{
+            color : rgb(253,185,39);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.IND{
-    border: 2px solid rgb(0,45,98);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(253,187,48,.8);
-    p{
-        color : rgb(0,45,98);
-        text-shadow: -1px -2 black, 0 0px black, 0px 0 black, 0 -1px black;
+    .IND{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(0,45,98);
+        background-color : rgba(253,187,48,.8);
+        p{
+            color : rgb(0,45,98);
+            text-shadow: -1px -2 black, 0 0px black, 0px 0 black, 0 -1px black;
+        }
     }
-}
 
-.LAC{
-    border: 2px solid rgb(0,107,182);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(237,23,76,.8);
-    p{
-        color : rgb(0,107,182);
-        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    .LAC{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(0,107,182);
+        background-color : rgba(237,23,76,.8);
+        p{
+            color : rgb(0,107,182);
+            text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        }
     }
-}
 
-.LAL{
-    border: 2px solid rgb(253,185,39);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(85,37,131,.8);
-    p{
-        color : rgb(253,185,39);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .LAL{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(253,185,39);
+        background-color : rgba(85,37,131,.8);
+        p{
+            color : rgb(253,185,39);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.MEM{
-    border: 2px solid rgb(97,137,185);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,40,94,.9);
-    p{
-        color : rgb(97,137,185);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .MEM{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(97,137,185);
+        background-color : rgba(0,40,94,.9);
+        p{
+            color : rgb(97,137,185);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.MIA{
-    border: 2px solid rgb(249,160,27);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(152,0,46,.8);
-    p{
-        color : rgb(249,160,27);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .MIA{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(249,160,27);
+        background-color : rgba(152,0,46,.8);
+        p{
+            color : rgb(249,160,27);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.MIL{
-    border: 2px solid rgb(238,225,198);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,71,27,.9);
-    p{
-        color : rgb(238,225,198);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .MIL{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(238,225,198);
+        background-color : rgba(0,71,27,.9);
+        p{
+            color : rgb(238,225,198);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.MIN{
-    border: 2px solid rgb(198,207,212);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,43,92,.9);
-    p{
-        color : rgb(198,207,212);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .MIN{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(198,207,212);
+        background-color : rgba(0,43,92,.9);
+        p{
+            color : rgb(198,207,212);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.NOP{
-    border: 2px solid rgb(225,58,62);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,22,65,.9);
-    p{
-        color : rgb(225,58,62);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .NOP{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(225,58,62);
+        background-color : rgba(0,22,65,.9);
+        p{
+            color : rgb(225,58,62);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.NYK{
-    border: 2px solid rgb(245,132,38);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,107,182,.8);
-    p{
-        color : rgb(245,132,38);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .NYK{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(245,132,38);
+        background-color : rgba(0,107,182,.8);
+        p{
+            color : rgb(245,132,38);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.OKC{
-    border: 2px solid rgb(240,81,51);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,45,98,.8);
-    p{
-        color : rgb(240,81,51);
-        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    .OKC{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(240,81,51);
+        background-color : rgba(0,45,98,.8);
+        p{
+            color : rgb(240,81,51);
+            text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        }
     }
-}
 
-.ORL{
-    border: 2px solid rgb(194,204,210);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(11,119,189,.9);
-    p{
-        color : rgb(194,204,210);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .ORL{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(194,204,210);
+        background-color : rgba(11,119,189,.9);
+        p{
+            color : rgb(194,204,210);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.PHI{
-    border: 2px solid rgb(255,255,255);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,107,182,.9);
-    p{
-        color : rgb(255,255,255);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .PHI{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,255,255);
+        background-color : rgba(0,107,182,.9);
+        p{
+            color : rgb(255,255,255);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.PHX{
-    border: 2px solid rgb(229,96,32);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(29,17,96, .8);
-    p{
-        color : rgb(229,96,32);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .PHX{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(229,96,32);
+        background-color : rgba(29,17,96, .8);
+        p{
+            color : rgb(229,96,32);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.POR{
-    border: 2px solid rgb(196,206,212);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,0,0,.9);
-    p{
-        color : rgb(196,206,212);
-        text-shadow: -1px 0 rgb(225,58,62), 0 1px rgb(225,58,62), 1px 0 rgb(225,58,62), 0 -1px rgb(225,58,62);
+    .POR{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(196,206,212);
+        background-color : rgba(0,0,0,.9);
+        p{
+            color : rgb(196,206,212);
+            text-shadow: -1px 0 rgb(225,58,62), 0 1px rgb(225,58,62), 1px 0 rgb(225,58,62), 0 -1px rgb(225,58,62);
+        }
     }
-}
 
-.SAC{
-    border: 2px solid rgb(255,255,255);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(90,45,129,.9);
-    p{
-        color : rgb(255,255,255);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .SAC{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(255,255,255);
+        background-color : rgba(90,45,129,.9);
+        p{
+            color : rgb(255,255,255);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.SAS{
-    border: 2px solid rgb(0,0,0);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(196,206,212,.8);
-    p{
-        color : rgb(0,0,0);
-        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+    .SAS{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(0,0,0);
+        background-color : rgba(196,206,212,.8);
+        p{
+            color : rgb(0,0,0);
+            text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        }
     }
-}
 
-.TOR{
-    border: 2px solid rgb(250,250,250);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,0,0,.8);
-    p{
-        color : rgb(250,250,250);
-        text-shadow: -1px 0 rgb(205,17,65), 0 1px rgb(205,17,65), 1px 0 rgb(205,17,65), 0 -1px rgb(205,17,65);
+    .TOR{
+        padding: 3%; border-radius:6%;
+        border: 2px solid rgb(250,250,250);
+        background-color : rgba(0,0,0,.8);
+        p{
+            color : rgb(250,250,250);
+            text-shadow: -1px 0 rgb(205,17,65), 0 1px rgb(205,17,65), 1px 0 rgb(205,17,65), 0 -1px rgb(205,17,65);
+        }
     }
-}
 
-.UTA{
-    border: 2px solid rgb(249,160,27);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(12,35,64,.8);
-    p{
-        color : rgb(249,160,27);
-        text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    .UTA{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(249,160,27);
+        background-color : rgba(12,35,64,.8);
+        p{
+            color : rgb(249,160,27);
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
     }
-}
 
-.WAS{
-    border: 2px solid rgb(227,24,55);
-    width: fit-content;
-    font-size: 20px;
-    float: left;
-    padding: 1%;
-    background-color : rgba(0,43,92,.9);
-    p{
-        color : rgb(255,255,255);
-        text-shadow: -1px 0 rgb(227,24,55), 0 1px rgb(227,24,55), 1px 0 rgb(227,24,55), 0 -1px rgb(227,24,55);
+    .WAS{
+        padding: 3%;
+        border-radius:6%;
+        border: 2px solid rgb(227,24,55);
+        background-color : rgba(0,43,92,.9);
+        p{
+            color : rgb(255,255,255);
+            text-shadow: -1px 0 rgb(227,24,55), 0 1px rgb(227,24,55), 1px 0 rgb(227,24,55), 0 -1px rgb(227,24,55);
+        }
     }
 }

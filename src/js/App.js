@@ -11,7 +11,7 @@ var outputcontainer = {
     // borderColor : "black",
     // borderWidth : 1,
     // borderStyle : "solid",
-    width : "80%",
+    width : "fit-content",
     marginLeft : "5%",
     display: "inline-block"
 }

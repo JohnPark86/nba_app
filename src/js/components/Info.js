@@ -4,28 +4,6 @@ import { connect } from 'react-redux';
 import NBA from 'nba';
 import {} from '../../scss/teamColors.scss'
 
-
-//Styling.
-var nameStyle = {
-	fontSize : 50,
-	fontFamily : "Helvetica",
-	padding : 15,
-	color : "red",
-    marginLeft: "3%"
-}
-
-var container = {
-    borderColor : "black",
-    borderWidth : 1,
-    borderStyle : "solid",
-    width : "fit-content",
-    fontSize : 18,
-    lineHeight : 1,
-    float: "left",
-    marginLeft: "3%",
-    padding: "1%"
-}
-
 /*
 *   Returns date formatted from ISO to 12-12-1234 .
 *
@@ -124,7 +102,7 @@ class Info extends React.Component {
         if(this.state.playerInfo !== undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
-    			<div>
+    			<div className="container" >
                     <div className={this.state.team}>
                         <p><b>Position:</b>  {this.state.playerInfo.position}</p>
                         <p><b>Date Of Birth:</b> {birthDate} </p>
