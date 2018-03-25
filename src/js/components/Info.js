@@ -28,8 +28,6 @@ class Info extends React.Component {
     	this.state={
     		playerName : props.player,
             playerInfo : props.playerInfo,
-            playerProfile : props.playerProfile,
-            team: " "
     	};
 
         this.getPlayerInfo = this.getPlayerInfo.bind(this);
@@ -57,7 +55,7 @@ class Info extends React.Component {
             Promise.resolve(info)
                 .then((playerInfo) => {
                     this.setState({
-                         playerInfo
+                         playerInfo,
                     });
                 }, (err) => {
                     console.warn(err);
@@ -80,7 +78,6 @@ class Info extends React.Component {
                     if(info != undefined){
                         this.setState({
                             playerInfo: playerInfo.commonPlayerInfo[0],
-                            team: playerInfo.commonPlayerInfo[0].teamAbbreviation
                         });
                     }
                 }, (err) => {
@@ -89,6 +86,7 @@ class Info extends React.Component {
         }
     }
 
+    //do i need this?
     shouldComponentUpdate(nextProps, nextState){
         if(nextState.playerInfo !== undefined){
             return true;
@@ -98,12 +96,11 @@ class Info extends React.Component {
 
     //Called everytime playerInfo state value is set.
 	render(){
-        console.log(this.state)
         if(this.state.playerInfo !== undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
     			<div className="container" >
-                    <div className={this.state.team}>
+                    <div className={this.props.team}>
                         <p><b>Position:</b>  {this.state.playerInfo.position}</p>
                         <p><b>Date Of Birth:</b> {birthDate} </p>
                         <p><b>Height:</b>  {this.state.playerInfo.height}</p>

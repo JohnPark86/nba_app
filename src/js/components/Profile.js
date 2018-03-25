@@ -16,9 +16,7 @@ class Profile extends React.Component {
         this.state={
             playerName : props.player,
             playerProfile : props.playerProfile,
-            team : " "
         };
-
         this.getPlayerProfile = this.getPlayerProfile.bind(this);
     }
 
@@ -37,7 +35,6 @@ class Profile extends React.Component {
                 .then( (playerProfile) => {
                     this.setState({
                          playerProfile : playerProfile,
-                         team : playerProfile.teamAbbreviation
                     });
                 }, (err) => {
                     console.warn(err);
@@ -58,11 +55,9 @@ class Profile extends React.Component {
             Promise.resolve(pro)
                 .then((playerProfile) => {
                     if(playerProfile !== undefined){
-                        console.log("pp: ", playerProfile)
                         var target = playerProfile.seasonTotalsRegularSeason.length -1;
                         this.setState({
                             playerProfile : playerProfile.seasonTotalsRegularSeason[target],
-                            team : playerProfile.seasonTotalsRegularSeason[target].teamAbbreviation
                         });
                     }
                 }, (err) => {
@@ -71,6 +66,7 @@ class Profile extends React.Component {
         }
     }
 
+    //do i need this?
     shouldComponentUpdate(nextProps, nextState){
         if(nextState.playerProfile !== undefined){
             return true;
@@ -83,7 +79,7 @@ class Profile extends React.Component {
         if(this.state.playerProfile !== undefined){
             return(
                 <div className="container">
-                    <div className={this.state.team} style={{"display":"inline-block"}}>
+                    <div className={this.props.team} style={{"display":"inline-block"}}>
                         <div style={profileStyle}>
                             <p><u>Current Season Averages</u></p>
                             <p><b>Assists:</b>  {this.state.playerProfile.ast}</p>
