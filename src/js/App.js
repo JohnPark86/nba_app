@@ -23,10 +23,11 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            team: " "
+            team: " ",
+            player: " "
         };
 
-        this.getTeam = this.getTeam.bind(this);
+        this.getInfo = this.getInfo.bind(this);
     }
 
     /*
@@ -34,7 +35,7 @@ class App extends React.Component {
     *
     *   @param player - The player name to information for.
     */
-    getTeam(player){
+    getInfo(player){
         var player = NBA.findPlayer(player);
         if(player === undefined){
             alert("Could not find a player by that name");
@@ -53,11 +54,12 @@ class App extends React.Component {
     */
     componentWillReceiveProps(nextProps){
         if(this.props.player != nextProps.player){
-            var info = this.getTeam(nextProps.player);
+            var info = this.getInfo(nextProps.player);
             Promise.resolve(info)
                 .then((playerInfo) => {
                     if(info != undefined){
                         this.setState({
+                            player: playerInfo.commonPlayerInfo[0].displayFirstLast,
                             team: playerInfo.commonPlayerInfo[0].teamAbbreviation
                         });
                     }
@@ -73,8 +75,8 @@ class App extends React.Component {
 				<Input />
                 <Card />
                     <div style={outputcontainer}>
-                        <Info team={this.state.team}/>
-                        <Profile team={this.state.team}/>
+                        <Info player={this.state.player} team={this.state.team}/>
+                        <Profile player={this.state.player} team={this.state.team}/>
                     </div>
 			</div>);
 	}

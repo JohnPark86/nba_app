@@ -14,8 +14,7 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state={
-            playerName : props.player,
-            playerProfile : props.playerProfile,
+            playerProfile : undefined
         };
         this.getPlayerProfile = this.getPlayerProfile.bind(this);
     }
@@ -24,21 +23,6 @@ class Profile extends React.Component {
         var player = NBA.findPlayer(player);
         if(player !== undefined){
             return NBA.stats.playerProfile({ PlayerID: player.playerId });
-        }
-    }
-
-    //place initialization code here
-    componentDidMount() {
-        if(this.props.player != ""){
-            var info = this.getPlayerProfile(this.props.player);
-            Promise.resolve(profile)
-                .then( (playerProfile) => {
-                    this.setState({
-                         playerProfile : playerProfile,
-                    });
-                }, (err) => {
-                    console.warn(err);
-            });
         }
     }
 

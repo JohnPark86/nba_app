@@ -21,13 +21,12 @@ const formatDate = (d) => {
     return(month +'-'+ dt +'-'+ year);
 }
 
-class Info extends React.Component {
+export default class Info extends React.Component {
 
 	constructor(props) {
     	super(props);
     	this.state={
-    		playerName : props.player,
-            playerInfo : props.playerInfo,
+            playerInfo : undefined
     	};
 
         this.getPlayerInfo = this.getPlayerInfo.bind(this);
@@ -48,21 +47,6 @@ class Info extends React.Component {
         }
     }
 
-    //place initialization code here
-    componentDidMount() {
-        if(this.props.player != ""){
-            var info = getPlayerInfo(this.props.player);
-            Promise.resolve(info)
-                .then((playerInfo) => {
-                    this.setState({
-                         playerInfo,
-                    });
-                }, (err) => {
-                    console.warn(err);
-            });
-        }
-    }
-
     /*
     *   Called everytime the props are updated which
     *   in this case is everytime the redux state changes.
@@ -71,6 +55,7 @@ class Info extends React.Component {
     *   @param nextProps - The props that are about to be set.
     */
     componentWillReceiveProps(nextProps){
+        console.log('tpp: ', this.props.player)
         if(this.props.player != nextProps.player){
             var info = this.getPlayerInfo(nextProps.player);
             Promise.resolve(info)
@@ -96,6 +81,7 @@ class Info extends React.Component {
 
     //Called everytime playerInfo state value is set.
 	render(){
+        console.log("info: ", this.state)
         if(this.state.playerInfo !== undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
@@ -123,8 +109,8 @@ class Info extends React.Component {
 *  Called everytime the redux state updates.
 *  @param - the redux state object
 */
-function mapStateToProps(state){
-	return { player: state.playerReducer }
-}
+// function mapStateToProps(state){
+// 	return { player: state.playerReducer }
+// }
 
-export default connect(mapStateToProps,null)(Info);
+// export default connect(mapStateToProps,null)(Info);
