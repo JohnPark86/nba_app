@@ -1,6 +1,5 @@
 import React from 'react';
 import store from '../redux/store';
-import { connect } from 'react-redux';
 import NBA from 'nba';
 import {} from '../../scss/teamColors.scss'
 
@@ -55,7 +54,6 @@ export default class Info extends React.Component {
     *   @param nextProps - The props that are about to be set.
     */
     componentWillReceiveProps(nextProps){
-        console.log('tpp: ', this.props.player)
         if(this.props.player != nextProps.player){
             var info = this.getPlayerInfo(nextProps.player);
             Promise.resolve(info)
@@ -81,7 +79,6 @@ export default class Info extends React.Component {
 
     //Called everytime playerInfo state value is set.
 	render(){
-        console.log("info: ", this.state)
         if(this.state.playerInfo !== undefined){
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return(
@@ -102,15 +99,3 @@ export default class Info extends React.Component {
         return null;
 	}
 }
-
-
-/*
-*  Maps Redux state to component props.
-*  Called everytime the redux state updates.
-*  @param - the redux state object
-*/
-// function mapStateToProps(state){
-// 	return { player: state.playerReducer }
-// }
-
-// export default connect(mapStateToProps,null)(Info);

@@ -73,7 +73,7 @@ class App extends React.Component {
 		return(
 			<div>
 				<Input />
-                <Card />
+                <Card player={this.state.player} team={this.state.team}/>
                     <div style={outputcontainer}>
                         <Info player={this.state.player} team={this.state.team}/>
                         <Profile player={this.state.player} team={this.state.team}/>

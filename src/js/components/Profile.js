@@ -1,6 +1,5 @@
 import React from 'react';
 import store from '../redux/store';
-import { connect } from 'react-redux';
 import NBA from 'nba';
 import {} from '../../scss/teamColors.scss'
 
@@ -9,7 +8,7 @@ var profileStyle = {
     width : "50%"
 }
 
-class Profile extends React.Component {
+export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
@@ -93,15 +92,3 @@ class Profile extends React.Component {
         return null;
     }
 }
-
-
-/*
-*  Maps Redux state to component props.
-*  Called everytime the redux state updates.
-*  @param - the redux state object
-*/
-function mapStateToProps(state){
-    return { player: state.playerReducer }
-}
-
-export default connect(mapStateToProps,null)(Profile);

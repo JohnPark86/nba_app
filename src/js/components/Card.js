@@ -3,7 +3,6 @@ import store from '../redux/store';
 import { connect } from 'react-redux';
 import NBA from 'nba';
 import {} from '../../scss/teamColors.scss'
-import axios from 'axios';
 
 //Styling.
 var nameStyle = {
@@ -27,10 +26,11 @@ class Card extends React.Component {
 
     constructor(props) {
         super(props);
+        console.log("card: ", props);
         this.state={
             playerName : props.player,
-            playerInfo : props.playerInfo,
-            team: " "
+            playerInfo : undefined,
+            team: props.team
         };
 
         this.getPlayerInfo = this.getPlayerInfo.bind(this);
@@ -85,6 +85,7 @@ class Card extends React.Component {
 
     //Called everytime playerInfo state value is set.
     render(){
+        console.log("card render: ", this.state)
         if(this.state.playerInfo !== undefined){
             var url = "https://nba-players.herokuapp.com/players/" + this.state.playerInfo.lastName +"/" + this.state.playerInfo.firstName;
             return(
