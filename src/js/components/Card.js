@@ -67,7 +67,8 @@ class Card extends React.Component {
                     if(playerInfo != undefined){
                         this.setState({
                             playerInfo: playerInfo.commonPlayerInfo[0],
-                            team: playerInfo.commonPlayerInfo[0].teamAbbreviation
+                            team: this.props.team,
+                            playerName: this.props.player
                         });
                     }
                 }, (err) => {
@@ -77,6 +78,7 @@ class Card extends React.Component {
     }
 
     shouldComponentUpdate(nextProps, nextState){
+        console.log('card SCU')
         if(nextState.playerInfo !== undefined){
             return true;
         }
