@@ -13,18 +13,18 @@ var outputcontainer = {
     // borderColor : "black",
     // borderWidth : 1,
     // borderStyle : "solid",
-    width : "fit-content",
-    marginLeft : "5%",
-    display: "inline-block"
-}
- 
-class App extends React.Component {
+    width: 'fit-content',
+    marginLeft: '5%',
+    display: 'inline-block'
+};
 
+class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state={
-            team: " ",
-            player: " "
+        this.state = {
+            team: ' ',
+            player: ' ',
+            playerList: []
         };
 
         this.getInfo = this.getInfo.bind(this);
@@ -35,12 +35,11 @@ class App extends React.Component {
     *
     *   @param player - The player name to information for.
     */
-    getInfo(player){
+    getInfo(player) {
         var player = NBA.findPlayer(player);
-        if(player === undefined){
-            alert("Could not find a player by that name");
-        }
-        else{
+        if (player === undefined) {
+            alert('Could not find a player by that name');
+        } else {
             return NBA.stats.playerInfo({ PlayerID: player.playerId });
         }
     }
@@ -52,34 +51,37 @@ class App extends React.Component {
     *
     *   @param nextProps - The props that are about to be set.
     */
-    componentWillReceiveProps(nextProps){
-        if(this.props.player != nextProps.player){
+    componentWillReceiveProps(nextProps) {
+        if (this.props.player != nextProps.player) {
             var info = this.getInfo(nextProps.player);
-            Promise.resolve(info)
-                .then((playerInfo) => {
-                    if(info != undefined){
+            Promise.resolve(info).then(
+                playerInfo => {
+                    if (info != undefined) {
                         this.setState({
                             player: playerInfo.commonPlayerInfo[0].displayFirstLast,
                             team: playerInfo.commonPlayerInfo[0].teamAbbreviation
                         });
                     }
-                }, (err) => {
+                },
+                err => {
                     console.warn(err);
-            });
+                }
+            );
         }
     }
 
-	render() {
-		return(
-			<div>
-				<Input />
-                <Card player={this.state.player} team={this.state.team}/>
-                    <div style={outputcontainer}>
-                        <Info player={this.state.player} team={this.state.team}/>
-                        <Profile player={this.state.player} team={this.state.team}/>
-                    </div>
-			</div>);
-	}
+    render() {
+        return (
+            <div>
+                <Input players={this.state.playersList} />
+                <Card player={this.state.player} team={this.state.team} />
+                <div style={outputcontainer}>
+                    <Info player={this.state.player} team={this.state.team} />
+                    <Profile player={this.state.player} team={this.state.team} />
+                </div>
+            </div>
+        );
+    }
 }
 
 /*
@@ -87,8 +89,8 @@ class App extends React.Component {
 *  Called everytime the redux state updates.
 *  @param - the redux state object
 */
-function mapStateToProps(state){
-    return { player: state.playerReducer }
+function mapStateToProps(state) {
+    return { player: state.playerReducer };
 }
 
-export default connect(mapStateToProps,null)(App);
+export default connect(mapStateToProps, null)(App);

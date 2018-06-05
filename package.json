@@ -32,6 +32,7 @@
     "react-bootstrap": "^0.31.5",
     "react-dom": "^15.6.2",
     "react-redux": "^5.0.6",
+    "react-select": "^1.2.1",
     "redux": "^3.7.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
