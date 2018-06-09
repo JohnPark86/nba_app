@@ -26,23 +26,26 @@ var logo = {
 class Input extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
         this.state = {
             player: '',
-            options: this.props.playersList
+            options: []
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(value) {
-        this.setState({ player: value });
-        this.props.addSearchParam(this.state.player);
-    }
-
-    handleSubmit(event) {
-        event.preventDefault();
+        this.setState({ player: value.fullName });
+        this.setState(
+            {
+                value
+            },
+            () => {
+                if (this.props.addSearchParam) {
+                    this.props.addSearchParam(value.fullName);
+                }
+            }
+        );
     }
 
     componentDidMount() {
@@ -53,26 +56,17 @@ class Input extends React.Component {
         });
     }
 
-    // getDerivedStatefromProps(props, state) {
-    //     console.log('props: ', props);
-    //     console.log('state: ', state);
-    // }
-
     render() {
         return (
             <div>
                 <img style={logo} src={require('../../img/logo.png')} />
-
                 <Select
                     style={inputStyle}
-                    id="state-select"
-                    onBlurResetsInput={false}
-                    onSelectResetsInput={false}
+                    id="input_select"
                     autoFocus
                     labelKey="fullName"
                     options={this.state.options}
                     clearable={this.state.clearable}
-                    name="selected-state"
                     value={this.state.player}
                     onChange={this.handleChange}
                     searchable={this.state.searchable}
