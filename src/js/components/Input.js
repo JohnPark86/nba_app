@@ -6,15 +6,8 @@ import { connect } from 'react-redux';
 import { addSearchParam } from '../redux/actions';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import {} from '../../scss/bootstrap-overrides.scss';
 import NBA from 'nba';
-
-var inputStyle = {
-    width: '40%',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    borderWidth: 1,
-    borderColor: '#000000'
-};
 
 var logo = {
     display: 'block',
@@ -35,10 +28,10 @@ class Input extends React.Component {
     }
 
     handleChange(value) {
-        this.setState({ player: value.fullName });
+        //this.setState({ player: value.fullName });
         this.setState(
             {
-                value
+                player: value.fullName
             },
             () => {
                 if (this.props.addSearchParam) {
@@ -61,7 +54,6 @@ class Input extends React.Component {
             <div>
                 <img style={logo} src={require('../../img/logo.png')} />
                 <Select
-                    style={inputStyle}
                     id="input_select"
                     autoFocus
                     labelKey="fullName"
