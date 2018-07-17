@@ -21,10 +21,9 @@ var headshot = {
     float: 'left'
 };
 
-class Card extends React.Component {
+export default class Card extends React.Component {
     constructor(props) {
         super(props);
-        console.log('card: ', props);
         this.state = {
             playerName: props.player,
             playerInfo: undefined,
@@ -77,7 +76,6 @@ class Card extends React.Component {
 
     //Called everytime playerInfo state value is set.
     render() {
-        console.log('card render: ', this.state);
         if (this.state.playerInfo !== undefined) {
             var url =
                 'https://nba-players.herokuapp.com/players/' +
@@ -97,14 +95,3 @@ class Card extends React.Component {
         return null;
     }
 }
-
-/*
-*  Maps Redux state to component props.
-*  Called everytime the redux state updates.
-*  @param - the redux state object
-*/
-function mapStateToProps(state) {
-    return { player: state.playerReducer };
-}
-
-export default connect(mapStateToProps, null)(Card);

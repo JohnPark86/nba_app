@@ -31,7 +31,7 @@ class App extends React.Component {
     }
 
     /*
-    *   Returns player team.
+    *   Returns player info.
     *
     *   @param player - The player name to information for.
     */

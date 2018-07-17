@@ -2,6 +2,8 @@ import React from 'react';
 import store from '../redux/store';
 import NBA from 'nba';
 import {} from '../../scss/teamColors.scss';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 var profileStyle = {
     float: 'left',
@@ -12,9 +14,12 @@ export default class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            season: undefined,
+            seasons : undefined,
             playerProfile: undefined
         };
         this.getPlayerProfile = this.getPlayerProfile.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     getPlayerProfile(player) {
@@ -22,6 +27,14 @@ export default class Profile extends React.Component {
         if (player !== undefined) {
             return NBA.stats.playerProfile({ PlayerID: player.playerId });
         }
+    }
+
+
+    handleChange(value){
+        this.setState({
+            playerProfile : value,
+            season : value.seasonId
+        })
     }
 
     /*
@@ -37,9 +50,13 @@ export default class Profile extends React.Component {
             Promise.resolve(pro).then(
                 playerProfile => {
                     if (playerProfile !== undefined) {
+                        console.log('pp: ', playerProfile);
                         var target = playerProfile.seasonTotalsRegularSeason.length - 1;
                         this.setState({
-                            playerProfile: playerProfile.seasonTotalsRegularSeason[target]
+                            seasons : playerProfile.seasonTotalsRegularSeason,
+                            playerProfile: playerProfile.seasonTotalsRegularSeason[target],
+                            season: playerProfile.seasonTotalsRegularSeason[target].seasonId
+
                         });
                     }
                 },
@@ -52,13 +69,14 @@ export default class Profile extends React.Component {
 
     //Called everytime playerInfo state value is set.
     render() {
+        console.log("state: ", this.state)
         if (this.state.playerProfile !== undefined) {
             return (
                 <div className="container">
                     <div className={this.props.team} style={{ display: 'inline-block' }}>
                         <div style={profileStyle}>
                             <p>
-                                <u>Current Season Averages</u>
+                                <u>{this.state.playerProfile.seasonId} Season Averages</u>
                             </p>
                             <p>
                                 <b>Assists:</b> {this.state.playerProfile.ast}
@@ -85,6 +103,16 @@ export default class Profile extends React.Component {
                             </p>
                         </div>
                         <div style={profileStyle}>
+                            <Select
+                                id="season"
+                                labelKey="season"
+                                options={this.state.seasons}
+                                labelKey="seasonId"
+                                //clearable={this.state.clearable}
+                                value={this.state.season}
+                                onChange={this.handleChange}
+                                //searchable={this.state.searchable}
+                            />
                             <p>
                                 <b>3 Pointers:</b> {this.state.playerProfile.fG3M} /{' '}
                                 {this.state.playerProfile.fG3A}
