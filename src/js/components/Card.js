@@ -86,8 +86,10 @@ export default class Card extends React.Component {
                 <div style={cardContainer}>
                     <img style={headshot} src={url} alt="Player headshot" />
                     <h3 style={nameStyle}>
-                        {this.state.playerInfo.displayFirstLast} - {this.state.playerInfo.jersey} -{' '}
-                        {this.state.playerInfo.teamCity} {this.state.playerInfo.teamName}{' '}
+                        {this.state.playerInfo.displayFirstLast} -{' '}
+                        {this.state.playerInfo.jersey} -{' '}
+                        {this.state.playerInfo.teamCity}{' '}
+                        {this.state.playerInfo.teamName}{' '}
                     </h3>
                 </div>
             );

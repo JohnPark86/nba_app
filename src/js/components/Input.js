@@ -72,4 +72,7 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ addSearchParam }, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(Input);
+export default connect(
+    null,
+    mapDispatchToProps
+)(Input);

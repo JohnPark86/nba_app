@@ -15,7 +15,7 @@ export default class Profile extends React.Component {
         super(props);
         this.state = {
             season: undefined,
-            seasons : undefined,
+            seasons: undefined,
             playerProfile: undefined
         };
         this.getPlayerProfile = this.getPlayerProfile.bind(this);
@@ -29,12 +29,11 @@ export default class Profile extends React.Component {
         }
     }
 
-
-    handleChange(value){
+    handleChange(value) {
         this.setState({
-            playerProfile : value,
-            season : value.seasonId
-        })
+            playerProfile: value,
+            season: value.seasonId
+        });
     }
 
     /*
@@ -51,12 +50,15 @@ export default class Profile extends React.Component {
                 playerProfile => {
                     if (playerProfile !== undefined) {
                         console.log('pp: ', playerProfile);
-                        var target = playerProfile.seasonTotalsRegularSeason.length - 1;
+                        var target =
+                            playerProfile.seasonTotalsRegularSeason.length - 1;
                         this.setState({
-                            seasons : playerProfile.seasonTotalsRegularSeason,
-                            playerProfile: playerProfile.seasonTotalsRegularSeason[target],
-                            season: playerProfile.seasonTotalsRegularSeason[target].seasonId
-
+                            seasons: playerProfile.seasonTotalsRegularSeason,
+                            playerProfile:
+                                playerProfile.seasonTotalsRegularSeason[target],
+                            season:
+                                playerProfile.seasonTotalsRegularSeason[target]
+                                    .seasonId
                         });
                     }
                 },
@@ -69,14 +71,20 @@ export default class Profile extends React.Component {
 
     //Called everytime playerInfo state value is set.
     render() {
-        console.log("state: ", this.state)
+        console.log('state: ', this.state);
         if (this.state.playerProfile !== undefined) {
             return (
                 <div className="container">
-                    <div className={this.props.team} style={{ display: 'inline-block' }}>
+                    <div
+                        className={this.props.team}
+                        style={{ display: 'inline-block' }}
+                    >
                         <div style={profileStyle}>
                             <p>
-                                <u>{this.state.playerProfile.seasonId} Season Averages</u>
+                                <u>
+                                    {this.state.playerProfile.seasonId} Season
+                                    Averages
+                                </u>
                             </p>
                             <p>
                                 <b>Assists:</b> {this.state.playerProfile.ast}
@@ -85,19 +93,23 @@ export default class Profile extends React.Component {
                                 <b>Blocks:</b> {this.state.playerProfile.blk}{' '}
                             </p>
                             <p>
-                                <b>Rebounds (Def):</b> {this.state.playerProfile.dreb}
+                                <b>Rebounds (Def):</b>{' '}
+                                {this.state.playerProfile.dreb}
                             </p>
                             <p>
-                                <b>Rebounds (Off):</b> {this.state.playerProfile.oreb}
+                                <b>Rebounds (Off):</b>{' '}
+                                {this.state.playerProfile.oreb}
                             </p>
                             <p>
-                                <b>Rebounds (total):</b> {this.state.playerProfile.reb}
+                                <b>Rebounds (total):</b>{' '}
+                                {this.state.playerProfile.reb}
                             </p>
                             <p>
                                 <b>Points:</b> {this.state.playerProfile.pts}{' '}
                             </p>
                             <p>
-                                <b>Field Goals:</b> {this.state.playerProfile.fgm} /{' '}
+                                <b>Field Goals:</b>{' '}
+                                {this.state.playerProfile.fgm} /{' '}
                                 {this.state.playerProfile.fga}
                                 &nbsp;({this.state.playerProfile.fgPct}%)
                             </p>
@@ -114,23 +126,28 @@ export default class Profile extends React.Component {
                                 //searchable={this.state.searchable}
                             />
                             <p>
-                                <b>3 Pointers:</b> {this.state.playerProfile.fG3M} /{' '}
+                                <b>3 Pointers:</b>{' '}
+                                {this.state.playerProfile.fG3M} /{' '}
                                 {this.state.playerProfile.fG3A}
                                 &nbsp;({this.state.playerProfile.fg3Pct}%)
                             </p>
                             <p>
-                                <b>Free Throws:</b> {this.state.playerProfile.ftm} /{' '}
+                                <b>Free Throws:</b>{' '}
+                                {this.state.playerProfile.ftm} /{' '}
                                 {this.state.playerProfile.fta}
                                 &nbsp;({this.state.playerProfile.ftPct}%)
                             </p>
                             <p>
-                                <b>Games Played:</b> {this.state.playerProfile.gp}{' '}
+                                <b>Games Played:</b>{' '}
+                                {this.state.playerProfile.gp}{' '}
                             </p>
                             <p>
-                                <b>Minutes Per Game:</b> {this.state.playerProfile.min}{' '}
+                                <b>Minutes Per Game:</b>{' '}
+                                {this.state.playerProfile.min}{' '}
                             </p>
                             <p>
-                                <b>Personal Fouls:</b> {this.state.playerProfile.pf}{' '}
+                                <b>Personal Fouls:</b>{' '}
+                                {this.state.playerProfile.pf}{' '}
                             </p>
                             <p>
                                 <b>Steals:</b> {this.state.playerProfile.stl}{' '}

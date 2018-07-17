@@ -89,16 +89,19 @@ export default class Info extends React.Component {
                             <b>Weight:</b> {this.state.playerInfo.weight}
                         </p>
                         <p>
-                            <b>Seasons in league:</b> {this.state.playerInfo.seasonExp}
+                            <b>Seasons in league:</b>{' '}
+                            {this.state.playerInfo.seasonExp}
                         </p>
                         <p>
                             <b>Draft Year:</b> {this.state.playerInfo.draftYear}
                         </p>
                         <p>
-                            <b>Draft Round:</b> {this.state.playerInfo.draftRound}
+                            <b>Draft Round:</b>{' '}
+                            {this.state.playerInfo.draftRound}
                         </p>
                         <p>
-                            <b>Draft Number:</b> {this.state.playerInfo.draftNumber}
+                            <b>Draft Number:</b>{' '}
+                            {this.state.playerInfo.draftNumber}
                         </p>
                     </div>
                 </div>
