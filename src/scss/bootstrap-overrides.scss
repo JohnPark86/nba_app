@@ -2,12 +2,14 @@
     Bootstrap Overrides
 */
 
-.Select-menu-outer {
-    width: 40%;
-    margin: 0 30%;
-}
+.input-area {
+	.Select-menu-outer {
+		width: 40%;
+		margin: 0 30%;
+	}
 
-.Select-control {
-    width: 40%;
-    margin: auto;
+	.Select-control {
+		width: 40%;
+		margin: auto;
+	}
 }
