@@ -1,7 +1,7 @@
-import React from 'react';
-import store from '../redux/store';
-import NBA from 'nba';
-import {} from '../../scss/teamColors.scss';
+import React from "react";
+import store from "../redux/store";
+import NBA from "nba";
+import {} from "../../scss/teamColors.scss";
 
 /*
 *   Returns date formatted from ISO to 12-12-1234 .
@@ -14,10 +14,10 @@ const formatDate = d => {
     var month = date.getMonth() + 1;
     var dt = date.getDate();
 
-    dt = dt < 10 ? '0' + dt : dt;
-    month = month < 10 ? '0' + month : month;
+    dt = dt < 10 ? "0" + dt : dt;
+    month = month < 10 ? "0" + month : month;
 
-    return month + '-' + dt + '-' + year;
+    return month + "-" + dt + "-" + year;
 };
 
 export default class Info extends React.Component {
@@ -38,7 +38,7 @@ export default class Info extends React.Component {
     getPlayerInfo(player) {
         var player = NBA.findPlayer(player);
         if (player === undefined) {
-            alert('Could not find a player by that name');
+            alert("Could not find a player by that name");
         } else {
             return NBA.stats.playerInfo({ PlayerID: player.playerId });
         }
@@ -80,7 +80,7 @@ export default class Info extends React.Component {
                             <b>Position:</b> {this.state.playerInfo.position}
                         </p>
                         <p>
-                            <b>Date Of Birth:</b> {birthDate}{' '}
+                            <b>Date Of Birth:</b> {birthDate}{" "}
                         </p>
                         <p>
                             <b>Height:</b> {this.state.playerInfo.height}
@@ -89,18 +89,18 @@ export default class Info extends React.Component {
                             <b>Weight:</b> {this.state.playerInfo.weight}
                         </p>
                         <p>
-                            <b>Seasons in league:</b>{' '}
+                            <b>Seasons in league:</b>{" "}
                             {this.state.playerInfo.seasonExp}
                         </p>
                         <p>
                             <b>Draft Year:</b> {this.state.playerInfo.draftYear}
                         </p>
                         <p>
-                            <b>Draft Round:</b>{' '}
+                            <b>Draft Round:</b>{" "}
                             {this.state.playerInfo.draftRound}
                         </p>
                         <p>
-                            <b>Draft Number:</b>{' '}
+                            <b>Draft Number:</b>{" "}
                             {this.state.playerInfo.draftNumber}
                         </p>
                     </div>

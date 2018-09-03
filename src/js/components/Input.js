@@ -29,7 +29,6 @@ class Input extends React.Component {
     }
 
     handleChange(value) {
-        //this.setState({ player: value.fullName });
         this.setState(
             {
                 playerObj: value,
@@ -64,6 +63,7 @@ class Input extends React.Component {
                     value={this.state.playerObj}
                     onChange={this.handleChange}
                     searchable={this.state.searchable}
+                    placeholder="Select an NBA player"
                 />
             </div>
         );

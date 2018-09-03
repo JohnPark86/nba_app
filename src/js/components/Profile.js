@@ -14,9 +14,11 @@ export default class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			placeholder: "Please select a season",
 			season: undefined,
 			seasons: undefined,
-			playerProfile: undefined
+			value: null,
+			playerProfile: null
 		};
 		this.getPlayerProfile = this.getPlayerProfile.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -30,27 +32,18 @@ export default class Profile extends React.Component {
 	}
 
 	handleChange(value) {
-		console.log(value);
 		this.setState({
 			playerProfile: value,
 			season: value.seasonId
 		});
 	}
 
-	/*
-    *   Called everytime the props are updated which
-    *   in this case is everytime the redux state changes.
-    *   or every time the user searches.
-    *
-    *   @param nextProps - The props that are about to be set.
-    */
 	componentWillReceiveProps(nextProps) {
 		if (this.props.player != nextProps.player) {
 			var pro = this.getPlayerProfile(nextProps.player);
 			Promise.resolve(pro).then(
 				playerProfile => {
 					if (playerProfile !== undefined) {
-						console.log("pp: ", playerProfile);
 						var target =
 							playerProfile.seasonTotalsRegularSeason.length - 1;
 						this.setState({
@@ -70,9 +63,14 @@ export default class Profile extends React.Component {
 		}
 	}
 
-	//Called everytime playerInfo state value is set.
 	render() {
-		if (this.state.playerProfile !== undefined) {
+		if (this.state.playerProfile !== null) {
+			var mapped = this.state.seasons.map(s => {
+				return {
+					...s,
+					info: `${s.seasonId} (${s.teamAbbreviation})`
+				};
+			});
 			return (
 				<div className="container">
 					<div
@@ -81,7 +79,9 @@ export default class Profile extends React.Component {
 					>
 						<div style={profileStyle}>
 							<p>
-								<u>{this.state.season} Season Averages</u>
+								<u>
+									<b>Season Averages</b>
+								</u>
 							</p>
 							<p>
 								<b>Assists:</b> {this.state.playerProfile.ast}
@@ -115,11 +115,12 @@ export default class Profile extends React.Component {
 						<div style={profileStyle}>
 							<Select
 								id="season"
-								labelKey="season"
-								options={this.state.seasons}
-								labelKey="seasonId"
-								value={this.state.playerProfile}
+								autoFocus
+								options={mapped}
+								labelKey="info"
+								value={this.state.season}
 								onChange={this.handleChange}
+								placeholder={mapped[mapped.length - 1].info}
 							/>
 							<p>
 								<b>3 Pointers: </b>

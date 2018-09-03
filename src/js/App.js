@@ -1,29 +1,29 @@
-'use-strict';
+"use-strict";
 
-import { connect } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.css';
-import NBA from 'nba';
-import React from 'react';
-import Input from './components/Input';
-import Info from './components/Info';
-import Card from './components/Card';
-import Profile from './components/Profile';
+import { connect } from "react-redux";
+import "bootstrap/dist/css/bootstrap.css";
+import NBA from "nba";
+import React from "react";
+import Input from "./components/Input";
+import Info from "./components/Info";
+import Card from "./components/Card";
+import Profile from "./components/Profile";
 
 var outputcontainer = {
-    // borderColor : "black",
-    // borderWidth : 1,
-    // borderStyle : "solid",
-    width: 'fit-content',
-    marginLeft: '5%',
-    display: 'inline-block'
+    borderColor: "black",
+    borderWidth: 1,
+    borderStyle: "solid",
+    width: "fit-content",
+    marginLeft: "5%",
+    display: "inline-block"
 };
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            team: ' ',
-            player: ' ',
+            team: " ",
+            player: " ",
             playerList: []
         };
 
@@ -38,7 +38,7 @@ class App extends React.Component {
     getInfo(player) {
         var player = NBA.findPlayer(player);
         if (player === undefined) {
-            alert('Could not find a player by that name');
+            alert("Could not find a player by that name");
         } else {
             return NBA.stats.playerInfo({ PlayerID: player.playerId });
         }
@@ -58,8 +58,10 @@ class App extends React.Component {
                 playerInfo => {
                     if (info != undefined) {
                         this.setState({
-                            player: playerInfo.commonPlayerInfo[0].displayFirstLast,
-                            team: playerInfo.commonPlayerInfo[0].teamAbbreviation
+                            player:
+                                playerInfo.commonPlayerInfo[0].displayFirstLast,
+                            team:
+                                playerInfo.commonPlayerInfo[0].teamAbbreviation
                         });
                     }
                 },
@@ -77,7 +79,10 @@ class App extends React.Component {
                 <Card player={this.state.player} team={this.state.team} />
                 <div style={outputcontainer}>
                     <Info player={this.state.player} team={this.state.team} />
-                    <Profile player={this.state.player} team={this.state.team} />
+                    <Profile
+                        player={this.state.player}
+                        team={this.state.team}
+                    />
                 </div>
             </div>
         );
@@ -93,4 +98,7 @@ function mapStateToProps(state) {
     return { player: state.playerReducer };
 }
 
-export default connect(mapStateToProps, null)(App);
+export default connect(
+    mapStateToProps,
+    null
+)(App);

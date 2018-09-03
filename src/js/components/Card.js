@@ -1,24 +1,24 @@
-import React from 'react';
-import store from '../redux/store';
-import { connect } from 'react-redux';
-import NBA from 'nba';
-import {} from '../../scss/teamColors.scss';
+import React from "react";
+import store from "../redux/store";
+import { connect } from "react-redux";
+import NBA from "nba";
+import {} from "../../scss/teamColors.scss";
 
 //Styling.
 var nameStyle = {
     fontSize: 50,
-    fontFamily: 'Helvetica',
-    color: 'red'
+    fontFamily: "Helvetica",
+    color: "red"
 };
 
 var cardContainer = {
-    display: 'inline-block',
-    marginLeft: '5%'
+    display: "inline-block",
+    marginLeft: "5%"
 };
 
 var headshot = {
-    width: '35%',
-    float: 'left'
+    width: "35%",
+    float: "left"
 };
 
 export default class Card extends React.Component {
@@ -41,7 +41,7 @@ export default class Card extends React.Component {
     getPlayerInfo(player) {
         var player = NBA.findPlayer(player);
         if (player === undefined) {
-            alert('Could not find a player by that name');
+            alert("Could not find a player by that name");
         } else {
             return NBA.stats.playerInfo({ PlayerID: player.playerId });
         }
@@ -78,18 +78,18 @@ export default class Card extends React.Component {
     render() {
         if (this.state.playerInfo !== undefined) {
             var url =
-                'https://nba-players.herokuapp.com/players/' +
+                "https://nba-players.herokuapp.com/players/" +
                 this.state.playerInfo.lastName +
-                '/' +
+                "/" +
                 this.state.playerInfo.firstName;
             return (
                 <div style={cardContainer}>
                     <img style={headshot} src={url} alt="Player headshot" />
                     <h3 style={nameStyle}>
-                        {this.state.playerInfo.displayFirstLast} -{' '}
-                        {this.state.playerInfo.jersey} -{' '}
-                        {this.state.playerInfo.teamCity}{' '}
-                        {this.state.playerInfo.teamName}{' '}
+                        {this.state.playerInfo.displayFirstLast} -{" "}
+                        {this.state.playerInfo.jersey} -{" "}
+                        {this.state.playerInfo.teamCity}{" "}
+                        {this.state.playerInfo.teamName}{" "}
                     </h3>
                 </div>
             );
