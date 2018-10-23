@@ -7,7 +7,7 @@ import React from "react";
 import Input from "./components/Input";
 import Info from "./components/Info";
 import Card from "./components/Card";
-import Profile from "./components/Profile";
+import Averages from "./components/Averages";
 
 var outputcontainer = {
     borderColor: "black",
@@ -24,10 +24,13 @@ class App extends React.Component {
         this.state = {
             team: " ",
             player: " ",
-            playerList: []
+            playerList: [],
+            averages: undefined,
+            info: undefined
         };
 
         this.getInfo = this.getInfo.bind(this);
+        this.getPlayerAverages = this.getPlayerAverages.bind(this);
     }
 
     /*
@@ -44,6 +47,13 @@ class App extends React.Component {
         }
     }
 
+    getPlayerAverages(player) {
+        var player = NBA.findPlayer(player);
+        if (player !== undefined) {
+            return NBA.stats.playerProfile({ PlayerID: player.playerId });
+        }
+    }
+
     /*
     *   Called everytime the props are updated which
     *   in this case is everytime the redux state changes.
@@ -54,14 +64,19 @@ class App extends React.Component {
     componentWillReceiveProps(nextProps) {
         if (this.props.player != nextProps.player) {
             var info = this.getInfo(nextProps.player);
-            Promise.resolve(info).then(
-                playerInfo => {
-                    if (info != undefined) {
+            var averages = this.getPlayerAverages(nextProps.player);
+
+            Promise.all([info, averages]).then(
+                values => {
+                    console.log(values);
+                    if (values != undefined) {
                         this.setState({
                             player:
-                                playerInfo.commonPlayerInfo[0].displayFirstLast,
+                                values[0].commonPlayerInfo[0].displayFirstLast,
                             team:
-                                playerInfo.commonPlayerInfo[0].teamAbbreviation
+                                values[0].commonPlayerInfo[0].teamAbbreviation,
+                            averages: values[1],
+                            info: values[0]
                         });
                     }
                 },
@@ -73,14 +88,15 @@ class App extends React.Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <div>
                 <Input />
                 <Card player={this.state.player} team={this.state.team} />
                 <div style={outputcontainer}>
-                    <Info player={this.state.player} team={this.state.team} />
-                    <Profile
-                        player={this.state.player}
+                    <Info info={this.state.info} team={this.state.team} />
+                    <Averages
+                        averages={this.state.averages}
                         team={this.state.team}
                     />
                 </div>
