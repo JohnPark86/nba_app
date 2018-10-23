@@ -44,7 +44,6 @@ class Input extends React.Component {
 
     componentDidMount() {
         var players = NBA.players;
-        console.log(players);
         this.setState({
             options: NBA.players
         });

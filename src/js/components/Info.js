@@ -1,3 +1,5 @@
+"use-strict";
+
 import React from "react";
 import store from "../redux/store";
 import NBA from "nba";
@@ -26,47 +28,15 @@ export default class Info extends React.Component {
         this.state = {
             playerInfo: undefined
         };
-
-        this.getPlayerInfo = this.getPlayerInfo.bind(this);
     }
 
-    /*
-    *   Returns player info object based on player id.
-    *
-    *   @param player - The player name to information for.
-    */
-    getPlayerInfo(player) {
-        var player = NBA.findPlayer(player);
-        if (player === undefined) {
-            alert("Could not find a player by that name");
-        } else {
-            return NBA.stats.playerInfo({ PlayerID: player.playerId });
+    static getDerivedStateFromProps(props, state) {
+        if (props.info !== undefined) {
+            return {
+                playerInfo: props.info.commonPlayerInfo[0]
+            };
         }
-    }
-
-    /*
-    *   Called everytime the props are updated which
-    *   in this case is everytime the redux state changes.
-    *   or every time the user searches.
-    *
-    *   @param nextProps - The props that are about to be set.
-    */
-    componentWillReceiveProps(nextProps) {
-        if (this.props.player != nextProps.player) {
-            var info = this.getPlayerInfo(nextProps.player);
-            Promise.resolve(info).then(
-                playerInfo => {
-                    if (info != undefined) {
-                        this.setState({
-                            playerInfo: playerInfo.commonPlayerInfo[0]
-                        });
-                    }
-                },
-                err => {
-                    console.warn(err);
-                }
-            );
-        }
+        return null;
     }
 
     //Called everytime playerInfo state value is set.

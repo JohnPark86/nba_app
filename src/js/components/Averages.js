@@ -1,3 +1,5 @@
+"use-strict";
+
 import React from "react";
 import store from "../redux/store";
 import NBA from "nba";
@@ -10,7 +12,7 @@ var profileStyle = {
 	width: "50%"
 };
 
-export default class Profile extends React.Component {
+export default class Averages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -20,15 +22,7 @@ export default class Profile extends React.Component {
 			value: null,
 			playerProfile: null
 		};
-		this.getPlayerProfile = this.getPlayerProfile.bind(this);
 		this.handleChange = this.handleChange.bind(this);
-	}
-
-	getPlayerProfile(player) {
-		var player = NBA.findPlayer(player);
-		if (player !== undefined) {
-			return NBA.stats.playerProfile({ PlayerID: player.playerId });
-		}
 	}
 
 	handleChange(value) {
@@ -38,29 +32,17 @@ export default class Profile extends React.Component {
 		});
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.player != nextProps.player) {
-			var pro = this.getPlayerProfile(nextProps.player);
-			Promise.resolve(pro).then(
-				playerProfile => {
-					if (playerProfile !== undefined) {
-						var target =
-							playerProfile.seasonTotalsRegularSeason.length - 1;
-						this.setState({
-							seasons: playerProfile.seasonTotalsRegularSeason,
-							playerProfile:
-								playerProfile.seasonTotalsRegularSeason[target],
-							season:
-								playerProfile.seasonTotalsRegularSeason[target]
-									.seasonId
-						});
-					}
-				},
-				err => {
-					console.warn(err);
-				}
-			);
+	static getDerivedStateFromProps(props, state) {
+		if (props.averages !== undefined) {
+			let target = props.averages.seasonTotalsRegularSeason.length - 1;
+			return {
+				seasons: props.averages.seasonTotalsRegularSeason,
+				playerProfile: props.averages.seasonTotalsRegularSeason[target],
+				season:
+					props.averages.seasonTotalsRegularSeason[target].seasonId
+			};
 		}
+		return null;
 	}
 
 	render() {
