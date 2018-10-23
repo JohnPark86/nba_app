@@ -36248,7 +36248,9 @@ var App = function (_React$Component) {
         _this.state = {
             team: " ",
             player: " ",
-            playerList: []
+            playerList: [],
+            averages: undefined,
+            info: undefined
         };
 
         _this.getInfo = _this.getInfo.bind(_this);
@@ -36291,42 +36293,46 @@ var App = function (_React$Component) {
         */
 
     }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(nextProps) {
-            var _this2 = this;
-
-            if (this.props.player != nextProps.player) {
-                var info = this.getInfo(nextProps.player);
-                var averages = this.getPlayerAverages(nextProps.player);
-
-                Promise.all([info, averages]).then(function (values) {
-                    console.log(values);
-                    if (values != undefined) {
-                        _this2.setState({
-                            player: playerInfo.commonPlayerInfo[0].displayFirstLast,
-                            team: playerInfo.commonPlayerInfo[0].teamAbbreviation
-                        });
-                    }
-                }, function (err) {
-                    console.warn(err);
-                });
-            }
-        }
-    }, {
         key: "render",
         value: function render() {
+            console.log(this.state);
             return _jsx("div", {}, void 0, _ref, _jsx(_Card2.default, {
                 player: this.state.player,
                 team: this.state.team
             }), _jsx("div", {
                 style: outputcontainer
             }, void 0, _jsx(_Info2.default, {
-                player: this.state.player,
+                info: this.state.info,
                 team: this.state.team
-            }), _jsx(Profile, {
-                player: this.state.player,
+            }), _jsx(_Averages2.default, {
+                averages: this.state.averages,
                 team: this.state.team
             })));
+        }
+    }], [{
+        key: "getDerivedStateFromProps",
+        value: function getDerivedStateFromProps(props, state) {
+            if (props.player != state.player) {
+                var info = this.getInfo(nextProps.player);
+                var averages = this.getPlayerAverages(nextProps.player);
+
+                Promise.all([info, averages]).then(function (values) {
+                    console.log(values);
+                    if (values != undefined) {
+                        return {
+                            player: values[0].commonPlayerInfo[0].displayFirstLast,
+                            team: values[0].commonPlayerInfo[0].teamAbbreviation,
+                            averages: values[1],
+                            info: values[0]
+                        };
+                    } else {
+                        return null;
+                    }
+                }, function (err) {
+                    console.warn(err);
+                });
+            }
+            return null;
         }
     }]);
 
@@ -55505,6 +55511,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFcAAACoCAIAAAAa
 
 "use strict";
 
+"use-strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -55580,60 +55587,14 @@ var Info = function (_React$Component) {
         _this.state = {
             playerInfo: undefined
         };
-
-        _this.getPlayerInfo = _this.getPlayerInfo.bind(_this);
         return _this;
     }
 
-    /*
-    *   Returns player info object based on player id.
-    *
-    *   @param player - The player name to information for.
-    */
-
-
     _createClass(Info, [{
-        key: "getPlayerInfo",
-        value: function getPlayerInfo(player) {
-            var player = _nba2.default.findPlayer(player);
-            if (player === undefined) {
-                alert("Could not find a player by that name");
-            } else {
-                return _nba2.default.stats.playerInfo({ PlayerID: player.playerId });
-            }
-        }
+        key: "render",
 
-        /*
-        *   Called everytime the props are updated which
-        *   in this case is everytime the redux state changes.
-        *   or every time the user searches.
-        *
-        *   @param nextProps - The props that are about to be set.
-        */
-
-    }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(nextProps) {
-            var _this2 = this;
-
-            if (this.props.player != nextProps.player) {
-                var info = this.getPlayerInfo(nextProps.player);
-                Promise.resolve(info).then(function (playerInfo) {
-                    if (info != undefined) {
-                        _this2.setState({
-                            playerInfo: playerInfo.commonPlayerInfo[0]
-                        });
-                    }
-                }, function (err) {
-                    console.warn(err);
-                });
-            }
-        }
 
         //Called everytime playerInfo state value is set.
-
-    }, {
-        key: "render",
         value: function render() {
             if (this.state.playerInfo !== undefined) {
                 var birthDate = formatDate(this.state.playerInfo.birthdate);
@@ -55642,6 +55603,16 @@ var Info = function (_React$Component) {
                 }, void 0, _jsx("div", {
                     className: this.props.team
                 }, void 0, _jsx("p", {}, void 0, _ref, " ", this.state.playerInfo.position), _jsx("p", {}, void 0, _ref2, " ", birthDate, " "), _jsx("p", {}, void 0, _ref3, " ", this.state.playerInfo.height), _jsx("p", {}, void 0, _ref4, " ", this.state.playerInfo.weight), _jsx("p", {}, void 0, _ref5, " ", this.state.playerInfo.seasonExp), _jsx("p", {}, void 0, _ref6, " ", this.state.playerInfo.draftYear), _jsx("p", {}, void 0, _ref7, " ", this.state.playerInfo.draftRound), _jsx("p", {}, void 0, _ref8, " ", this.state.playerInfo.draftNumber)));
+            }
+            return null;
+        }
+    }], [{
+        key: "getDerivedStateFromProps",
+        value: function getDerivedStateFromProps(props, state) {
+            if (props.info !== undefined) {
+                return {
+                    playerInfo: props.info.commonPlayerInfo[0]
+                };
             }
             return null;
         }
@@ -55672,6 +55643,7 @@ exports.push([module.i, ".container {\n  width: fit-content;\n  height: fit-cont
 
 "use strict";
 
+"use-strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -55819,6 +55791,7 @@ exports.default = Card;
 
 "use strict";
 
+"use-strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -55908,47 +55881,17 @@ var Averages = function (_React$Component) {
 			value: null,
 			playerProfile: null
 		};
-		_this.getPlayerProfile = _this.getPlayerProfile.bind(_this);
 		_this.handleChange = _this.handleChange.bind(_this);
 		return _this;
 	}
 
 	_createClass(Averages, [{
-		key: "getPlayerProfile",
-		value: function getPlayerProfile(player) {
-			var player = _nba2.default.findPlayer(player);
-			if (player !== undefined) {
-				return _nba2.default.stats.playerProfile({ PlayerID: player.playerId });
-			}
-		}
-	}, {
 		key: "handleChange",
 		value: function handleChange(value) {
 			this.setState({
 				playerProfile: value,
 				season: value.seasonId
 			});
-		}
-	}, {
-		key: "componentWillReceiveProps",
-		value: function componentWillReceiveProps(nextProps) {
-			var _this2 = this;
-
-			if (this.props.player != nextProps.player) {
-				var pro = this.getPlayerProfile(nextProps.player);
-				Promise.resolve(pro).then(function (playerProfile) {
-					if (playerProfile !== undefined) {
-						var target = playerProfile.seasonTotalsRegularSeason.length - 1;
-						_this2.setState({
-							seasons: playerProfile.seasonTotalsRegularSeason,
-							playerProfile: playerProfile.seasonTotalsRegularSeason[target],
-							season: playerProfile.seasonTotalsRegularSeason[target].seasonId
-						});
-					}
-				}, function (err) {
-					console.warn(err);
-				});
-			}
 		}
 	}, {
 		key: "render",
@@ -55977,6 +55920,19 @@ var Averages = function (_React$Component) {
 					onChange: this.handleChange,
 					placeholder: mapped[mapped.length - 1].info
 				}), _jsx("p", {}, void 0, _ref9, this.state.playerProfile.fG3M, " /", " ", this.state.playerProfile.fG3A, "\xA0(", this.state.playerProfile.fg3Pct, "%)"), _jsx("p", {}, void 0, _ref10, this.state.playerProfile.ftm, " /", " ", this.state.playerProfile.fta, "\xA0(", this.state.playerProfile.ftPct, "%)"), _jsx("p", {}, void 0, _ref11, this.state.playerProfile.gp, " "), _jsx("p", {}, void 0, _ref12, this.state.playerProfile.min, " "), _jsx("p", {}, void 0, _ref13, this.state.playerProfile.pf, " "), _jsx("p", {}, void 0, _ref14, this.state.playerProfile.stl, " "), _jsx("p", {}, void 0, _ref15, this.state.playerProfile.tov, " "))));
+			}
+			return null;
+		}
+	}], [{
+		key: "getDerivedStateFromProps",
+		value: function getDerivedStateFromProps(props, state) {
+			if (props.averages !== undefined) {
+				var target = props.averages.seasonTotalsRegularSeason.length - 1;
+				return {
+					seasons: props.averages.seasonTotalsRegularSeason,
+					playerProfile: props.averages.seasonTotalsRegularSeason[target],
+					season: props.averages.seasonTotalsRegularSeason[target].seasonId
+				};
 			}
 			return null;
 		}

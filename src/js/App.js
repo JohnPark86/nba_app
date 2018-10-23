@@ -61,8 +61,9 @@ class App extends React.Component {
     *
     *   @param nextProps - The props that are about to be set.
     */
-    componentWillReceiveProps(nextProps) {
-        if (this.props.player != nextProps.player) {
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.player != state.player) {
             var info = this.getInfo(nextProps.player);
             var averages = this.getPlayerAverages(nextProps.player);
 
@@ -70,14 +71,16 @@ class App extends React.Component {
                 values => {
                     console.log(values);
                     if (values != undefined) {
-                        this.setState({
+                        return {
                             player:
                                 values[0].commonPlayerInfo[0].displayFirstLast,
                             team:
                                 values[0].commonPlayerInfo[0].teamAbbreviation,
                             averages: values[1],
                             info: values[0]
-                        });
+                        };
+                    } else {
+                        return null;
                     }
                 },
                 err => {
@@ -85,6 +88,7 @@ class App extends React.Component {
                 }
             );
         }
+        return null;
     }
 
     render() {
