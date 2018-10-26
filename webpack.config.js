@@ -1,13 +1,14 @@
 /*
     ./webpack.config.js
 */
-const path = require('path');
+const path = require("path");
 
 module.exports = {
     entry: path.resolve(__dirname, "src", "index"),
+    devtool: "source-map",
     output: {
-        path: path.resolve('dist'),
-        filename: 'index_bundle.js'
+        path: path.resolve("dist"),
+        filename: "index_bundle.js"
     },
     devServer: {
         contentBase: path.join(__dirname, "dist"),
@@ -18,7 +19,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                loader: "babel-loader",
                 exclude: /node_modules/
             },
             {
@@ -34,18 +35,16 @@ module.exports = {
             },
             {
                 test: /\.eot|.svg|.woff|.woff2|.ttf$/,
-                use: ['url-loader']
+                use: ["url-loader"]
             },
             {
                 test: /\.(jpe?g|png|gif)$/i,
-                use: ['url-loader?limit=10000', 'img-loader']
+                use: ["url-loader?limit=10000", "img-loader"]
             },
             {
                 test: /\.scss$/,
-                use: ["style-loader","css-loader","sass-loader"]
+                use: ["style-loader", "css-loader", "sass-loader"]
             }
         ]
     }
-}
-
-
+};

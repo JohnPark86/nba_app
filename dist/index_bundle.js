@@ -36246,8 +36246,8 @@ var App = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
         _this.state = {
-            team: " ",
-            player: " ",
+            team: undefined,
+            player: undefined,
             playerList: [],
             averages: undefined,
             info: undefined
@@ -36312,9 +36312,12 @@ var App = function (_React$Component) {
     }], [{
         key: "getDerivedStateFromProps",
         value: function getDerivedStateFromProps(props, state) {
-            if (props.player != state.player) {
-                var info = this.getInfo(nextProps.player);
-                var averages = this.getPlayerAverages(nextProps.player);
+            console.log("props: ", props);
+            console.log("state: ", state);
+
+            if (props.player !== state.player && props.player) {
+                var info = this.getInfo(props.player);
+                var averages = this.getPlayerAverages(props.player);
 
                 Promise.all([info, averages]).then(function (values) {
                     console.log(values);
@@ -55609,6 +55612,7 @@ var Info = function (_React$Component) {
     }], [{
         key: "getDerivedStateFromProps",
         value: function getDerivedStateFromProps(props, state) {
+            console.log("props info:", props);
             if (props.info !== undefined) {
                 return {
                     playerInfo: props.info.commonPlayerInfo[0]
@@ -55945,3 +55949,4 @@ exports.default = Averages;
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=index_bundle.js.map

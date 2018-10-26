@@ -31,7 +31,7 @@ export default class Info extends React.Component {
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.info !== undefined) {
+        if (props.info) {
             return {
                 playerInfo: props.info.commonPlayerInfo[0]
             };

@@ -22,90 +22,72 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            team: " ",
-            player: " ",
-            playerList: [],
+            team: undefined,
+            player: undefined,
             averages: undefined,
             info: undefined
         };
-
-        this.getInfo = this.getInfo.bind(this);
-        this.getPlayerAverages = this.getPlayerAverages.bind(this);
     }
 
-    /*
-    *   Returns player info.
-    *
-    *   @param player - The player name to information for.
-    */
-    getInfo(player) {
-        var player = NBA.findPlayer(player);
-        if (player === undefined) {
-            alert("Could not find a player by that name");
-        } else {
-            return NBA.stats.playerInfo({ PlayerID: player.playerId });
-        }
-    }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.player !== this.props.player && this.props.player) {
+            var player = NBA.findPlayer(this.props.player);
+            if (player === undefined) {
+                alert("Could not find a player by that name");
+            } else {
+                var info = NBA.stats.playerInfo({ PlayerID: player.playerId });
+                var averages = NBA.stats.playerProfile({
+                    PlayerID: player.playerId
+                });
 
-    getPlayerAverages(player) {
-        var player = NBA.findPlayer(player);
-        if (player !== undefined) {
-            return NBA.stats.playerProfile({ PlayerID: player.playerId });
-        }
-    }
-
-    /*
-    *   Called everytime the props are updated which
-    *   in this case is everytime the redux state changes.
-    *   or every time the user searches.
-    *
-    *   @param nextProps - The props that are about to be set.
-    */
-
-    static getDerivedStateFromProps(props, state) {
-        if (props.player != state.player) {
-            var info = this.getInfo(nextProps.player);
-            var averages = this.getPlayerAverages(nextProps.player);
-
-            Promise.all([info, averages]).then(
-                values => {
-                    console.log(values);
-                    if (values != undefined) {
-                        return {
-                            player:
-                                values[0].commonPlayerInfo[0].displayFirstLast,
-                            team:
-                                values[0].commonPlayerInfo[0].teamAbbreviation,
-                            averages: values[1],
-                            info: values[0]
-                        };
-                    } else {
-                        return null;
+                Promise.all([info, averages]).then(
+                    values => {
+                        if (values != undefined) {
+                            this.setState({
+                                player:
+                                    values[0].commonPlayerInfo[0]
+                                        .displayFirstLast,
+                                team:
+                                    values[0].commonPlayerInfo[0]
+                                        .teamAbbreviation,
+                                averages: values[1],
+                                info: values[0]
+                            });
+                        } else {
+                            return null;
+                        }
+                    },
+                    err => {
+                        console.warn(err);
                     }
-                },
-                err => {
-                    console.warn(err);
-                }
-            );
+                );
+            }
         }
         return null;
     }
 
     render() {
-        console.log(this.state);
-        return (
-            <div>
-                <Input />
-                <Card player={this.state.player} team={this.state.team} />
-                <div style={outputcontainer}>
-                    <Info info={this.state.info} team={this.state.team} />
-                    <Averages
-                        averages={this.state.averages}
-                        team={this.state.team}
-                    />
+        if (this.state.player === undefined) {
+            return (
+                <div>
+                    <Input />
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return (
+                <div>
+                    <Input />
+                    <Card player={this.state.player} team={this.state.team} />
+                    <div style={outputcontainer}>
+                        <Info info={this.state.info} team={this.state.team} />
+                        <Averages
+                            averages={this.state.averages}
+                            team={this.state.team}
+                        />
+                    </div>
+                </div>
+            );
+        }
     }
 }
 
