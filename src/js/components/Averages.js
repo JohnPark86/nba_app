@@ -18,13 +18,13 @@ export default class Averages extends React.Component {
 		this.state = {
 			placeholder: "Please select a season",
 			season: null,
-			seasons: null
+			seasons: null,
+			averages: props.averages
 		};
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(value) {
-		console.log(value);
 		this.setState({
 			season: value
 		});
@@ -38,8 +38,18 @@ export default class Averages extends React.Component {
 		});
 	}
 
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps.averages !== this.props.averages) {
+			let target =
+				this.props.averages.seasonTotalsRegularSeason.length - 1;
+			this.setState({
+				seasons: this.props.averages.seasonTotalsRegularSeason,
+				season: this.props.averages.seasonTotalsRegularSeason[target]
+			});
+		}
+	}
+
 	render() {
-		console.log("avg: ", this.state);
 		if (this.state.season) {
 			let mapped = this.state.seasons.map(s => {
 				return {
@@ -47,7 +57,6 @@ export default class Averages extends React.Component {
 					info: `${s.seasonId} (${s.teamAbbreviation})`
 				};
 			});
-			console.log(mapped);
 			return (
 				<div className="container">
 					<div

@@ -26,17 +26,16 @@ export default class Info extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            playerInfo: undefined
+            playerInfo: props.info.commonPlayerInfo[0]
         };
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.info) {
-            return {
-                playerInfo: props.info.commonPlayerInfo[0]
-            };
+    componentDidUpdate(props, state) {
+        if (this.props.info != props.info) {
+            this.setState({
+                playerInfo: this.props.info.commonPlayerInfo[0]
+            });
         }
-        return null;
     }
 
     //Called everytime playerInfo state value is set.
