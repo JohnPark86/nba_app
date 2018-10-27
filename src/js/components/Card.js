@@ -14,6 +14,10 @@ var nameStyle = {
 };
 
 var cardContainer = {
+    borderColor: "black",
+    borderWidth: 1,
+    borderStyle: "solid",
+    width: "80%",
     display: "inline-block",
     marginLeft: "5%"
 };
@@ -23,56 +27,31 @@ var headshot = {
     float: "left"
 };
 
+var flex = {
+    display: "flex"
+};
+
+var teamStyle = {
+    fontSize: 40
+};
+
 export default class Card extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             playerName: props.player,
-            playerInfo: undefined,
+            playerInfo: props.info.commonPlayerInfo[0],
             team: props.team
         };
-
-        this.getPlayerInfo = this.getPlayerInfo.bind(this);
     }
 
-    /*
-    *   Returns player info object based on player id.
-    *
-    *   @param player - The player name to information for.
-    */
-    getPlayerInfo(player) {
-        var player = NBA.findPlayer(player);
-        if (player === undefined) {
-            alert("Could not find a player by that name");
-        } else {
-            return NBA.stats.playerInfo({ PlayerID: player.playerId });
-        }
-    }
-
-    /*
-    *   Called everytime the props are updated which
-    *   in this case is everytime the redux state changes.
-    *   or every time the user searches.
-    *
-    *   @param nextProps - The props that are about to be set.
-    */
-    componentWillReceiveProps(nextProps) {
-        if (this.props.player != nextProps.player) {
-            var info = this.getPlayerInfo(nextProps.player);
-            Promise.resolve(info).then(
-                playerInfo => {
-                    if (playerInfo != undefined) {
-                        this.setState({
-                            playerInfo: playerInfo.commonPlayerInfo[0],
-                            team: this.props.team,
-                            playerName: this.props.player
-                        });
-                    }
-                },
-                err => {
-                    console.warn(err);
-                }
-            );
+    componentDidUpdate(props, state) {
+        if (this.props.info != props.info) {
+            this.setState({
+                playerInfo: this.props.info.commonPlayerInfo[0],
+                team: this.props.team,
+                playerName: this.props.player
+            });
         }
     }
 
@@ -87,12 +66,18 @@ export default class Card extends React.Component {
             return (
                 <div style={cardContainer}>
                     <img style={headshot} src={url} alt="Player headshot" />
-                    <h3 style={nameStyle}>
-                        {this.state.playerInfo.displayFirstLast} -{" "}
-                        {this.state.playerInfo.jersey} -{" "}
-                        {this.state.playerInfo.teamCity}{" "}
-                        {this.state.playerInfo.teamName}{" "}
-                    </h3>
+                    <div style={flex}>
+                        <h3 style={nameStyle}>
+                            {this.state.playerInfo.displayFirstLast}
+                        </h3>
+
+                        <div style={teamStyle}>
+                            {this.state.playerInfo.jersey}{" "}
+                            <img
+                                src={require("../../img/team-logos/OKC.svg")}
+                            />
+                        </div>
+                    </div>
                 </div>
             );
         }

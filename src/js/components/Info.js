@@ -38,7 +38,6 @@ export default class Info extends React.Component {
         }
     }
 
-    //Called everytime playerInfo state value is set.
     render() {
         if (this.state.playerInfo !== undefined) {
             var birthDate = formatDate(this.state.playerInfo.birthdate);

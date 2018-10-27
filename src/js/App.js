@@ -77,7 +77,11 @@ class App extends React.Component {
             return (
                 <div>
                     <Input />
-                    <Card player={this.state.player} team={this.state.team} />
+                    <Card
+                        info={this.state.info}
+                        player={this.state.player}
+                        team={this.state.team}
+                    />
                     <div style={outputcontainer}>
                         <Info info={this.state.info} team={this.state.team} />
                         <Averages
