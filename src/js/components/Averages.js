@@ -4,6 +4,7 @@ import React from "react";
 import store from "../redux/store";
 import NBA from "nba";
 import {} from "../../scss/teamColors.scss";
+import {} from "../../scss/util.scss";
 import Select from "react-select";
 
 var profileStyle = {
@@ -16,7 +17,7 @@ export default class Averages extends React.Component {
 		super(props);
 		this.state = {
 			placeholder: "Please select a season",
-			season: null,
+			season: undefined,
 			seasons: null,
 			averages: props.averages
 		};
@@ -50,12 +51,14 @@ export default class Averages extends React.Component {
 
 	render() {
 		if (this.state.season) {
-			let mapped = this.state.seasons.map(s => {
-				return {
-					...s,
-					info: `${s.seasonId} (${s.teamAbbreviation})`
-				};
-			});
+			let mapped = this.state.seasons
+				.map(s => {
+					return {
+						...s,
+						info: `${s.seasonId} (${s.teamAbbreviation})`
+					};
+				})
+				.reverse();
 			return (
 				<div className="container">
 					<div
@@ -100,11 +103,17 @@ export default class Averages extends React.Component {
 						<div style={profileStyle}>
 							<Select
 								id="season"
-								getOptionLabel={(mapped: {}) => mapped.info}
+								getOptionLabel={(mapped: {}) =>
+									mapped.info ||
+									this.state.season.seasonId +
+										" (" +
+										this.state.season.teamAbbreviation +
+										") "
+								}
 								options={mapped}
 								value={this.state.season}
 								onChange={this.handleChange}
-								placeholder={mapped[mapped.length - 1].info}
+								placeholder="No Season"
 							/>
 							<p>
 								<b>3 Pointers: </b>
