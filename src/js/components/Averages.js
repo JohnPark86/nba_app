@@ -5,7 +5,6 @@ import store from "../redux/store";
 import NBA from "nba";
 import {} from "../../scss/teamColors.scss";
 import Select from "react-select";
-import "react-select/dist/react-select.css";
 
 var profileStyle = {
 	float: "left",
@@ -101,9 +100,8 @@ export default class Averages extends React.Component {
 						<div style={profileStyle}>
 							<Select
 								id="season"
-								autoFocus
+								getOptionLabel={(mapped: {}) => mapped.info}
 								options={mapped}
-								labelKey="info"
 								value={this.state.season}
 								onChange={this.handleChange}
 								placeholder={mapped[mapped.length - 1].info}

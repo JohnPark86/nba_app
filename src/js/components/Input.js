@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { addSearchParam } from "../redux/actions";
 import Select from "react-select";
-import "react-select/dist/react-select.css";
 import {} from "../../scss/bootstrap-overrides.scss";
 import NBA from "nba";
 
@@ -50,15 +49,14 @@ class Input extends React.Component {
     }
 
     render() {
+        console.log(this.state.options);
         return (
             <div className="input-area">
                 <img style={logo} src={require("../../img/logo.png")} />
                 <Select
                     id="input_select"
-                    autoFocus
-                    labelKey="fullName"
+                    getOptionLabel={(option: {}) => option.fullName}
                     options={this.state.options}
-                    clearable={this.state.clearable}
                     value={this.state.playerObj}
                     onChange={this.handleChange}
                     searchable={this.state.searchable}
