@@ -1,6 +1,5 @@
 "use-strict";
 
-import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.css";
 import NBA from "nba";
 import React from "react";
@@ -21,62 +20,67 @@ var outputcontainer = {
 class App extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             team: undefined,
             player: undefined,
             averages: undefined,
             info: undefined
         };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.player !== this.props.player && this.props.player) {
-            var player = NBA.findPlayer(this.props.player);
-            if (player === undefined) {
-                alert("Could not find a player by that name");
-            } else {
-                var info = NBA.stats.playerInfo({ PlayerID: player.playerId });
-                var averages = NBA.stats.playerProfile({
-                    PlayerID: player.playerId
-                });
+    handleChange(value) {
+        var player = NBA.findPlayer(value);
+        if (player === undefined) {
+            alert("Could not find a player by that name");
+        } else {
+            var info = NBA.stats.playerInfo({ PlayerID: player.playerId });
+            var averages = NBA.stats.playerProfile({
+                PlayerID: player.playerId
+            });
 
-                Promise.all([info, averages]).then(
-                    values => {
-                        if (values != undefined) {
-                            this.setState({
-                                player:
-                                    values[0].commonPlayerInfo[0]
-                                        .displayFirstLast,
-                                team:
-                                    values[0].commonPlayerInfo[0]
-                                        .teamAbbreviation,
-                                averages: values[1],
-                                info: values[0]
-                            });
-                        } else {
-                            return null;
-                        }
-                    },
-                    err => {
-                        console.warn(err);
+            Promise.all([info, averages]).then(
+                values => {
+                    if (values != undefined) {
+                        this.setState({
+                            player:
+                                values[0].commonPlayerInfo[0]
+                                    .displayFirstLast,
+                            team:
+                                values[0].commonPlayerInfo[0]
+                                    .teamAbbreviation,
+                            averages: values[1],
+                            info: values[0]
+                        });
+                    } else {
+                        return null;
                     }
-                );
-            }
+                },
+                err => {
+                    console.warn(err);
+                }
+            );
         }
+
         return null;
     }
 
+   
+
     render() {
+        console.log(this.props.store.getState())
         if (this.state.player === undefined) {
             return (
                 <div>
-                    <Input />
+                    <Input handleChange={this.handleChange} />
                 </div>
             );
         } else {
             return (
                 <div>
-                    <Input />
+                    <Input handleChange={this.handleChange} />
                     <Card
                         info={this.state.info}
                         player={this.state.player}
@@ -95,16 +99,4 @@ class App extends React.Component {
     }
 }
 
-/*
-*  Maps Redux state to component props.
-*  Called everytime the redux state updates.
-*  @param - the redux state object
-*/
-function mapStateToProps(state) {
-    return { player: state.playerReducer };
-}
-
-export default connect(
-    mapStateToProps,
-    null
-)(App);
+export default App;

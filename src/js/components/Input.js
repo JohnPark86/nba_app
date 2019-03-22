@@ -1,9 +1,4 @@
 import React from "react";
-import store from "../redux/store";
-import { FormGroup, FormControl } from "react-bootstrap";
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
-import { addSearchParam } from "../redux/actions";
 import Select from "react-select";
 import {} from "../../scss/bootstrap-overrides.scss";
 import NBA from "nba";
@@ -34,22 +29,20 @@ class Input extends React.Component {
                 player: value.fullName
             },
             () => {
-                if (this.props.addSearchParam) {
-                    this.props.addSearchParam(value.fullName);
+                if (this.props.handleChange) {
+                    this.props.handleChange(value.fullName);
                 }
             }
         );
     }
 
     componentDidMount() {
-        var players = NBA.players;
         this.setState({
             options: NBA.players
         });
     }
 
     render() {
-        console.log(this.state.options);
         return (
             <div className="input-area">
                 <img style={logo} src={require("../../img/logo.png")} />
@@ -67,11 +60,4 @@ class Input extends React.Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ addSearchParam }, dispatch);
-}
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(Input);
+export default Input;
