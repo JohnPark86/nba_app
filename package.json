@@ -33,6 +33,7 @@
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
     "react-select": "^2.1.1",
+    "react-table": "^6.9.2",
     "redux": "^3.7.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.19.1",

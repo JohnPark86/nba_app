@@ -1,155 +1,115 @@
 "use-strict";
 
 import React from "react";
-import store from "../redux/store";
-import NBA from "nba";
-import {} from "../../scss/teamColors.scss";
-import {} from "../../scss/util.scss";
-import Select from "react-select";
-
-var profileStyle = {
-	float: "left",
-	width: "50%"
-};
+import ReactTable from "react-table";
+import 'react-table/react-table.css'
+import { } from "../../scss/teamColors.scss";
+import { } from "../../scss/util.scss";
 
 export default class Averages extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			placeholder: "Please select a season",
-			season: undefined,
 			seasons: null,
 			averages: props.averages
 		};
-		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleChange(value) {
-		this.setState({
-			season: value
-		});
-	}
+
 
 	componentDidMount() {
-		let target = this.props.averages.seasonTotalsRegularSeason.length - 1;
 		this.setState({
 			seasons: this.props.averages.seasonTotalsRegularSeason,
-			season: this.props.averages.seasonTotalsRegularSeason[target]
 		});
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		if (prevProps.averages !== this.props.averages) {
-			let target =
-				this.props.averages.seasonTotalsRegularSeason.length - 1;
+			
 			this.setState({
 				seasons: this.props.averages.seasonTotalsRegularSeason,
-				season: this.props.averages.seasonTotalsRegularSeason[target]
 			});
 		}
 	}
 
 	render() {
-		if (this.state.season) {
-			let mapped = this.state.seasons
-				.map(s => {
-					return {
-						...s,
-						info: `${s.seasonId} (${s.teamAbbreviation})`
-					};
-				})
-				.reverse();
+
+		if (this.state.seasons) {
+			console.log(this.state)
+
+			let columns = [{
+				Header: 'Season',
+				accessor: 'seasonId'
+			},
+			{
+				Header: 'Team',
+				accessor: 'teamAbbreviation'
+			},
+			{
+				Header: 'Assists',
+				accessor: 'ast'
+			},
+			{
+				Header: 'Blocks',
+				accessor: 'blk'
+			},
+			{
+				Header: 'Rebounds (Def)',
+				accessor: 'dreb'
+			},
+			{
+				Header: 'Rebounds (Off)',
+				accessor: 'oreb'
+			},
+			{
+				Header: 'Rebounds (total)',
+				accessor: 'reb'
+			},
+			{
+				Header: 'Points',
+				accessor: 'pts'
+			},
+			{
+				Header: 'Field Goals',
+				accessor: 'fgm'
+			},
+			{
+				Header: '3 Pointers',
+				accessor: 'fG3M'
+			},
+			{
+				Header: 'Free Throws',
+				accessor: 'ftm'
+			},
+			{
+				Header: 'Games Played',
+				accessor: 'gp'
+			},
+			{
+				Header: 'Minutes Per Game',
+				accessor: 'min'
+			},
+			{
+				Header: 'Personal Fouls',
+				accessor: 'pf'
+			},
+			{
+				Header: 'Steals',
+				accessor: 'stl'
+			},
+			{
+				Header: 'Turnovers',
+				accessor: 'tov'
+			}];
+
 			return (
-				<div className="container">
-					<div
-						className={this.props.team}
-						style={{ display: "inline-block" }}
-					>
-						<div style={profileStyle}>
-							<p>
-								<u>
-									<b>Season Averages</b>
-								</u>
-							</p>
-							<p>
-								<b>Assists:</b> {this.state.season.ast}
-							</p>
-							<p>
-								<b>Blocks:</b> {this.state.season.blk}{" "}
-							</p>
-							<p>
-								<b>Rebounds (Def): </b>
-								{this.state.season.dreb}
-							</p>
-							<p>
-								<b>Rebounds (Off): </b>
-								{this.state.season.oreb}
-							</p>
-							<p>
-								<b>Rebounds (total): </b>
-								{this.state.season.reb}
-							</p>
-							<p>
-								<b>Points: </b>
-								{this.state.season.pts}{" "}
-							</p>
-							<p>
-								<b>Field Goals: </b>
-								{this.state.season.fgm} /{" "}
-								{this.state.season.fga}
-								&nbsp;({this.state.season.fgPct}%)
-							</p>
-						</div>
-						<div style={profileStyle}>
-							<Select
-								id="season"
-								getOptionLabel={(mapped: {}) =>
-									mapped.info ||
-									this.state.season.seasonId +
-										" (" +
-										this.state.season.teamAbbreviation +
-										") "
-								}
-								options={mapped}
-								value={this.state.season}
-								onChange={this.handleChange}
-								placeholder="No Season"
-							/>
-							<p>
-								<b>3 Pointers: </b>
-								{this.state.season.fG3M} /{" "}
-								{this.state.season.fG3A}
-								&nbsp;({this.state.season.fg3Pct}%)
-							</p>
-							<p>
-								<b>Free Throws: </b>
-								{this.state.season.ftm} /{" "}
-								{this.state.season.fta}
-								&nbsp;({this.state.season.ftPct}%)
-							</p>
-							<p>
-								<b>Games Played: </b>
-								{this.state.season.gp}{" "}
-							</p>
-							<p>
-								<b>Minutes Per Game: </b>
-								{this.state.season.min}{" "}
-							</p>
-							<p>
-								<b>Personal Fouls: </b>
-								{this.state.season.pf}{" "}
-							</p>
-							<p>
-								<b>Steals: </b>
-								{this.state.season.stl}{" "}
-							</p>
-							<p>
-								<b>Turnovers: </b>
-								{this.state.season.tov}{" "}
-							</p>
-						</div>
-					</div>
-				</div>
+				<ReactTable
+					data={this.state.seasons}
+					columns={columns}
+					defaultPageSize={10}
+					resolveData={data => data.map(row => row)}
+				/>
 			);
 		}
 		return null;
