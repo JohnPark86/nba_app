@@ -12,9 +12,8 @@ var outputcontainer = {
     borderColor: "black",
     borderWidth: 1,
     borderStyle: "solid",
-    width: "fit-content",
+    width: "90%",
     marginLeft: "5%",
-    display: "inline-block"
 };
 
 class App extends React.Component {
@@ -87,7 +86,7 @@ class App extends React.Component {
                         team={this.state.team}
                     />
                     <div style={outputcontainer}>
-                        <Info info={this.state.info} team={this.state.team} />
+                        {/* <Info info={this.state.info} team={this.state.team} /> */}
                         <Averages
                             averages={this.state.averages}
                             team={this.state.team}

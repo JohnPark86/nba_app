@@ -2,28 +2,27 @@
 
 import React from "react";
 import {} from "../../scss/teamColors.scss";
+import Info from './Info';
 
 //Styling.
-var nameStyle = {
+const nameStyle = {
     fontSize: 50,
     fontFamily: "Helvetica"
 };
 
-var cardContainer = {
+const headshot = {
+    width: "25vw"
+}
+const cardContainer = {
     borderColor: "black",
     borderWidth: 1,
     borderStyle: "solid",
-    width: "80%",
-    display: "inline-block",
+    width: "90%",
+    display: "flex",
     marginLeft: "5%"
 };
 
-var headshot = {
-    width: "35%",
-    float: "left"
-};
-
-var teamStyle = {
+const teamStyle = {
     fontSize: 40
 };
 
@@ -59,18 +58,18 @@ export default class Card extends React.Component {
                     <img style={headshot} src={url} alt="Player headshot" />
                     <div>
                         <div style={nameStyle}>
-                            {this.state.playerInfo.jersey}{" "}
                             {this.state.playerInfo.displayFirstLast}
-                        </div>
-
-                        <div style={teamStyle}>
                             <img
                                 src={require("../../img/team-logos/OKC.svg")}
                             />
+                        </div>
+                        <div style={teamStyle}>
                             {this.state.playerInfo.teamCity}{" "}
                             {this.state.playerInfo.teamName}
+                            {this.state.playerInfo.jersey}{" "}
                         </div>
                     </div>
+                    <Info info={this.props.info} team={this.props.team} />
                 </div>
             );
         }

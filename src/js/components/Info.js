@@ -1,7 +1,17 @@
 "use-strict";
 
 import React from "react";
-import {} from "../../scss/teamColors.scss";
+import { } from "../../scss/teamColors.scss";
+
+
+const info_container = {
+    width: fit-content;
+    height: fit-content;
+    font-size: 22px;
+    float: left;
+    padding: 0;
+    display: flex;
+}
 
 /*
 *   Returns date formatted from ISO to 12-12-1234 .
@@ -28,20 +38,14 @@ export default class Info extends React.Component {
         };
     }
 
-    componentDidUpdate(props, state) {
-        if (this.props.info != props.info) {
-            this.setState({
-                playerInfo: this.props.info.commonPlayerInfo[0]
-            });
-        }
-    }
+
 
     render() {
         if (this.state.playerInfo !== undefined) {
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return (
-                <div className="container">
-                    <div className={this.props.team}>
+                <div styling={info_container}>
+                    <div>
                         <p>
                             <b>Position:</b> {this.state.playerInfo.position}
                         </p>
@@ -54,6 +58,8 @@ export default class Info extends React.Component {
                         <p>
                             <b>Weight:</b> {this.state.playerInfo.weight}
                         </p>
+                    </div>
+                    <div>
                         <p>
                             <b>Seasons in league:</b>{" "}
                             {this.state.playerInfo.seasonExp}
