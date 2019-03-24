@@ -5,12 +5,8 @@ import { } from "../../scss/teamColors.scss";
 
 
 const info_container = {
-    width: fit-content;
-    height: fit-content;
-    font-size: 22px;
-    float: left;
-    padding: 0;
-    display: flex;
+    fontSize: "18px",
+    flexGrow: "3"
 }
 
 /*
@@ -38,13 +34,21 @@ export default class Info extends React.Component {
         };
     }
 
-
+    static getDerivedStateFromProps(nextProps, prevState){
+        console.log(nextProps)
+        console.log(prevState)
+        if(nextProps.info.commonPlayerInfo[0] !== prevState.playerInfo){
+          return { playerInfo: nextProps.info.commonPlayerInfo[0]};
+       }
+       else return null;
+     }
 
     render() {
+        console.log(this.props)
         if (this.state.playerInfo !== undefined) {
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return (
-                <div styling={info_container}>
+                <div style={info_container}>
                     <div>
                         <p>
                             <b>Position:</b> {this.state.playerInfo.position}
@@ -58,8 +62,6 @@ export default class Info extends React.Component {
                         <p>
                             <b>Weight:</b> {this.state.playerInfo.weight}
                         </p>
-                    </div>
-                    <div>
                         <p>
                             <b>Seasons in league:</b>{" "}
                             {this.state.playerInfo.seasonExp}

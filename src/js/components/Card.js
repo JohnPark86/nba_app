@@ -11,20 +11,24 @@ const nameStyle = {
 };
 
 const headshot = {
-    width: "25vw"
+    flexGrow: "1"
 }
 const cardContainer = {
     borderColor: "black",
     borderWidth: 1,
     borderStyle: "solid",
-    width: "90%",
     display: "flex",
-    marginLeft: "5%"
+    marginLeft: "5%",
+    marginRight: "5%"
 };
 
 const teamStyle = {
     fontSize: 40
 };
+
+const card_info = {
+    flexGrow: "2"
+}
 
 export default class Card extends React.Component {
     constructor(props) {
@@ -56,7 +60,7 @@ export default class Card extends React.Component {
             return (
                 <div style={cardContainer}>
                     <img style={headshot} src={url} alt="Player headshot" />
-                    <div>
+                    <div style={card_info}>
                         <div style={nameStyle}>
                             {this.state.playerInfo.displayFirstLast}
                             <img
@@ -66,6 +70,8 @@ export default class Card extends React.Component {
                         <div style={teamStyle}>
                             {this.state.playerInfo.teamCity}{" "}
                             {this.state.playerInfo.teamName}
+                            {'\u00A0'}
+                            {'\u00A0'}
                             {this.state.playerInfo.jersey}{" "}
                         </div>
                     </div>
