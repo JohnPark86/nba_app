@@ -108,6 +108,7 @@ export default class Averages extends React.Component {
 					data={this.state.seasons}
 					columns={columns}
 					defaultPageSize={10}
+					defaultSortDesc={true}
 					resolveData={data => data.map(row => row)}
 				/>
 			);

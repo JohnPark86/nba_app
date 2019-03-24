@@ -6,24 +6,22 @@ import Info from './Info';
 
 //Styling.
 const nameStyle = {
-    fontSize: 50,
-    fontFamily: "Helvetica"
+    fontSize: 42,
 };
 
 const headshot = {
     flexGrow: "1"
 }
 const cardContainer = {
-    borderColor: "black",
-    borderWidth: 1,
-    borderStyle: "solid",
+    // borderColor: "black",
+    // borderWidth: 1,
+    // borderStyle: "solid",
     display: "flex",
-    marginLeft: "5%",
-    marginRight: "5%"
+    margin: "5% 5% 0% 5%",
 };
 
 const teamStyle = {
-    fontSize: 40
+    fontSize: 34
 };
 
 const card_info = {
