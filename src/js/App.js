@@ -2,7 +2,7 @@
 
 import "bootstrap/dist/css/bootstrap.css";
 import NBA from "nba";
-import React from "react";
+import React, { useState , useEffect} from 'react';
 import Input from "./components/Input";
 import Info from "./components/Info";
 import Card from "./components/Card";
@@ -16,21 +16,14 @@ var outputcontainer = {
     marginLeft: "5%",
 };
 
-class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            team: undefined,
-            player: undefined,
-            averages: undefined,
-            info: undefined
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(value) {
+export default function App() {
+    
+    const [team, setTeam] = useState(undefined);
+    const [player, setPlayer] = useState(undefined);
+    const [averages, setAverages] = useState(undefined);
+    const [info, setInfo] = useState(undefined);
+    
+    const handleChange = (value) => {
         var player = NBA.findPlayer(value);
         if (player === undefined) {
             alert("Could not find a player by that name");
@@ -42,60 +35,52 @@ class App extends React.Component {
 
             Promise.all([info, averages]).then(
                 values => {
+                    console.log('val: ', values)
                     if (values != undefined) {
-                        this.setState({
-                            player:
-                                values[0].commonPlayerInfo[0]
-                                    .displayFirstLast,
-                            team:
-                                values[0].commonPlayerInfo[0]
-                                    .teamAbbreviation,
-                            averages: values[1],
-                            info: values[0]
-                        });
+                            setPlayer(values[0].commonPlayerInfo[0].displayFirstLast);
+                            setTeam(values[0].commonPlayerInfo[0].teamAbbreviation)
+                            setAverages(values[1]);
+                            setInfo(values[0]);
                     } else {
                         return null;
                     }
                 },
                 err => {
                     console.warn(err);
-                }
-            );
+                }       
+            )
         }
-
-        return null;
     }
 
-   
-
-    render() {
-        console.log(this.props.store.getState())
-        if (this.state.player === undefined) {
-            return (
-                <div>
-                    <Input handleChange={this.handleChange} />
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <Input handleChange={this.handleChange} />
-                    <Card
-                        info={this.state.info}
-                        player={this.state.player}
-                        team={this.state.team}
+    if (player === undefined) {   
+        return (
+            <div>
+                <Input handleChange={handleChange} />
+            </div>
+        );
+    }
+    else{
+        console.log(player)
+        console.log(team)
+        console.log(averages)
+        console.log(info)
+        return (
+            <div>
+                <Input handleChange={handleChange} />
+                <Card
+                    info={info}
+                    player={player}
+                    team={team}
+                />
+                <div style={outputcontainer}>
+                    {/* <Info info={this.state.info} team={this.state.team} /> */}
+                    <Averages
+                        averages={averages}
+                        team={team}
                     />
-                    <div style={outputcontainer}>
-                        {/* <Info info={this.state.info} team={this.state.team} /> */}
-                        <Averages
-                            averages={this.state.averages}
-                            team={this.state.team}
-                        />
-                    </div>
                 </div>
-            );
-        }
+            </div>
+        );
     }
 }
 
-export default App;

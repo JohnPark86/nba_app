@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState , useEffect} from 'react';
 import Select from "react-select";
 import {} from "../../scss/bootstrap-overrides.scss";
 import NBA from "nba";
@@ -10,54 +10,38 @@ var logo = {
     width: "6%"
 };
 
-class Input extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            playerObj: null,
-            player: "",
-            options: []
-        };
+export default function Input({handleChange}) {
+    
+    const [playerObj, setPlayerObj] = useState(null);
+    const [player, setPlayer] = useState('');
+    const [options, setOptions] = useState([]);
 
-        this.handleChange = this.handleChange.bind(this);
+    const handleSelect = (value) => {
+        setPlayerObj(value)
+        setPlayer(value.fullName)
+            
+        if (handleChange) {
+            handleChange(value.fullName);
+        }        
     }
 
-    handleChange(value) {
-        this.setState(
-            {
-                playerObj: value,
-                player: value.fullName
-            },
-            () => {
-                if (this.props.handleChange) {
-                    this.props.handleChange(value.fullName);
-                }
-            }
-        );
-    }
+    useEffect(() => {
+        setOptions(NBA.players);
+    },[]);
 
-    componentDidMount() {
-        this.setState({
-            options: NBA.players
-        });
-    }
-
-    render() {
-        return (
-            <div className="input-area">
-                <img style={logo} src={require("../../img/logo.png")} />
-                <Select
-                    id="input_select"
-                    getOptionLabel={(option: {}) => option.fullName}
-                    options={this.state.options}
-                    value={this.state.playerObj}
-                    onChange={this.handleChange}
-                    searchable={this.state.searchable}
-                    placeholder="Select an NBA player"
-                />
-            </div>
-        );
-    }
+    return (
+        <div className="input-area">
+            <img style={logo} src={require("../../img/logo.png")} />
+            <Select
+                id="input_select"
+                getOptionLabel={(option: {}) => option.fullName}
+                options={options}
+                value={playerObj}
+                onChange={handleSelect}
+                placeholder="Select an NBA player"
+            />
+        </div>
+    );
 }
 
-export default Input;
+
