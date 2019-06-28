@@ -10,7 +10,7 @@ var logo = {
     width: "6%"
 };
 
-export default function Input({handleChange}) {
+const Input = ({handleChange}) => {
     
     const [playerObj, setPlayerObj] = useState(null);
     const [player, setPlayer] = useState('');
@@ -44,4 +44,5 @@ export default function Input({handleChange}) {
     );
 }
 
+export default Input;
 

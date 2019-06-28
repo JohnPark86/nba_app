@@ -35,8 +35,6 @@ export default class Info extends React.Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
-        console.log(nextProps)
-        console.log(prevState)
         if(nextProps.info.commonPlayerInfo[0] !== prevState.playerInfo){
           return { playerInfo: nextProps.info.commonPlayerInfo[0]};
        }
@@ -44,7 +42,6 @@ export default class Info extends React.Component {
      }
 
     render() {
-        console.log(this.props)
         if (this.state.playerInfo !== undefined) {
             var birthDate = formatDate(this.state.playerInfo.birthdate);
             return (

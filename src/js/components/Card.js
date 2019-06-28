@@ -1,6 +1,6 @@
 "use-strict";
 
-import React from "react";
+import React, { useState , useEffect} from 'react';
 import {} from "../../scss/teamColors.scss";
 import Info from './Info';
 
@@ -28,55 +28,51 @@ const card_info = {
     flexGrow: "2"
 }
 
-export default class Card extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            playerName: props.player,
-            playerInfo: props.info.commonPlayerInfo[0],
-            team: props.team
-        };
-    }
+const Card = (props) => {
 
-    componentDidUpdate(props, state) {
-        if (this.props.info != props.info) {
-            this.setState({
-                playerInfo: this.props.info.commonPlayerInfo[0],
-                team: this.props.team,
-                playerName: this.props.player
-            });
-        }
-    }
+    const [playerName, setPlayerName] = useState(props.player)
+    const [playerInfo, setPlayerInfo] = useState(props.info)
+    const [playerTeam, setTeam] = useState(props.team)
 
-    render() {
-        if (this.state.playerInfo !== undefined) {
-            var url =
-                "https://nba-players.herokuapp.com/players/" +
-                this.state.playerInfo.lastName +
-                "/" +
-                this.state.playerInfo.firstName;
-            return (
-                <div style={cardContainer}>
-                    <img style={headshot} src={url} alt="Player headshot" />
-                    <div style={card_info}>
-                        <div style={nameStyle}>
-                            {this.state.playerInfo.displayFirstLast}
-                            <img
-                                src={require("../../img/team-logos/OKC.svg")}
-                            />
-                        </div>
-                        <div style={teamStyle}>
-                            {this.state.playerInfo.teamCity}{" "}
-                            {this.state.playerInfo.teamName}
-                            {'\u00A0'}
-                            {'\u00A0'}
-                            {this.state.playerInfo.jersey}{" "}
-                        </div>
+   
+    useEffect( () => {
+        setPlayerName(props.player)
+        setTeam(props.team)
+        setPlayerInfo(props.info)
+    }, [props]);
+
+    
+    if (playerInfo !== undefined) {
+        console.log(playerInfo)
+        var url =
+            "https://nba-players.herokuapp.com/players/" +
+            playerInfo.commonPlayerInfo[0].lastName +
+            "/" +
+            playerInfo.commonPlayerInfo[0].firstName;
+        return (
+            <div style={cardContainer}>
+                <img style={headshot} src={url} alt="Player headshot" />
+                <div style={card_info}>
+                    <div style={nameStyle}>
+                        {playerInfo.commonPlayerInfo[0].displayFirstLast}
+                        <img
+                            src={require("../../img/team-logos/OKC.svg")}
+                        />
                     </div>
-                    <Info info={this.props.info} team={this.props.team} />
+                    <div style={teamStyle}>
+                        {playerInfo.commonPlayerInfo[0].teamCity}{" "}
+                        {playerInfo.commonPlayerInfo[0].teamName}
+                        {'\u00A0'}
+                        {'\u00A0'}
+                        {playerInfo.commonPlayerInfo[0].jersey}{" "}
+                    </div>
                 </div>
-            );
-        }
-        return null;
+                <Info info={playerInfo} team={playerTeam} />
+            </div>
+        );
     }
+    return null;
 }
+
+export default Card;
+

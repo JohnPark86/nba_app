@@ -16,12 +16,12 @@ var outputcontainer = {
     marginLeft: "5%",
 };
 
-export default function App() {
+const App = () => {
     
     const [team, setTeam] = useState(undefined);
-    const [player, setPlayer] = useState(undefined);
     const [averages, setAverages] = useState(undefined);
     const [info, setInfo] = useState(undefined);
+    const [player, setPlayer] = useState(undefined);
     
     const handleChange = (value) => {
         var player = NBA.findPlayer(value);
@@ -35,12 +35,11 @@ export default function App() {
 
             Promise.all([info, averages]).then(
                 values => {
-                    console.log('val: ', values)
                     if (values != undefined) {
-                            setPlayer(values[0].commonPlayerInfo[0].displayFirstLast);
                             setTeam(values[0].commonPlayerInfo[0].teamAbbreviation)
                             setAverages(values[1]);
                             setInfo(values[0]);
+                            setPlayer(values[0].commonPlayerInfo[0].displayFirstLast);
                     } else {
                         return null;
                     }
@@ -60,10 +59,6 @@ export default function App() {
         );
     }
     else{
-        console.log(player)
-        console.log(team)
-        console.log(averages)
-        console.log(info)
         return (
             <div>
                 <Input handleChange={handleChange} />
@@ -84,3 +79,4 @@ export default function App() {
     }
 }
 
+export default App;
