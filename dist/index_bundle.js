@@ -4923,7 +4923,6 @@ var Info = function (_React$Component) {
     _createClass(Info, [{
         key: "render",
         value: function render() {
-            console.log(this.props);
             if (this.state.playerInfo !== undefined) {
                 var birthDate = formatDate(this.state.playerInfo.birthdate);
                 return _jsx("div", {
@@ -4935,8 +4934,6 @@ var Info = function (_React$Component) {
     }], [{
         key: "getDerivedStateFromProps",
         value: function getDerivedStateFromProps(nextProps, prevState) {
-            console.log(nextProps);
-            console.log(prevState);
             if (nextProps.info.commonPlayerInfo[0] !== prevState.playerInfo) {
                 return { playerInfo: nextProps.info.commonPlayerInfo[0] };
             } else return null;
@@ -30407,7 +30404,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 __webpack_require__(63);
 
@@ -30437,12 +30434,6 @@ var _Averages2 = _interopRequireDefault(_Averages);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 var outputcontainer = {
     borderColor: "black",
     borderWidth: 1,
@@ -30451,84 +30442,71 @@ var outputcontainer = {
     marginLeft: "5%"
 };
 
-var App = function (_React$Component) {
-    _inherits(App, _React$Component);
+var App = function App() {
+    var _useState = (0, _react.useState)(undefined),
+        _useState2 = _slicedToArray(_useState, 2),
+        team = _useState2[0],
+        setTeam = _useState2[1];
 
-    function App(props) {
-        _classCallCheck(this, App);
+    var _useState3 = (0, _react.useState)(undefined),
+        _useState4 = _slicedToArray(_useState3, 2),
+        averages = _useState4[0],
+        setAverages = _useState4[1];
 
-        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _useState5 = (0, _react.useState)(undefined),
+        _useState6 = _slicedToArray(_useState5, 2),
+        info = _useState6[0],
+        setInfo = _useState6[1];
 
-        _this.state = {
-            team: undefined,
-            player: undefined,
-            averages: undefined,
-            info: undefined
-        };
+    var _useState7 = (0, _react.useState)(undefined),
+        _useState8 = _slicedToArray(_useState7, 2),
+        player = _useState8[0],
+        setPlayer = _useState8[1];
 
-        _this.handleChange = _this.handleChange.bind(_this);
-        return _this;
+    var handleChange = function handleChange(value) {
+        var player = _nba2.default.findPlayer(value);
+        if (player === undefined) {
+            alert("Could not find a player by that name");
+        } else {
+            var info = _nba2.default.stats.playerInfo({ PlayerID: player.playerId });
+            var averages = _nba2.default.stats.playerProfile({
+                PlayerID: player.playerId
+            });
+
+            Promise.all([info, averages]).then(function (values) {
+                if (values != undefined) {
+                    setTeam(values[0].commonPlayerInfo[0].teamAbbreviation);
+                    setAverages(values[1]);
+                    setInfo(values[0]);
+                    setPlayer(values[0].commonPlayerInfo[0].displayFirstLast);
+                } else {
+                    return null;
+                }
+            }, function (err) {
+                console.warn(err);
+            });
+        }
+    };
+
+    if (player === undefined) {
+        return _jsx("div", {}, void 0, _jsx(_Input2.default, {
+            handleChange: handleChange
+        }));
+    } else {
+        return _jsx("div", {}, void 0, _jsx(_Input2.default, {
+            handleChange: handleChange
+        }), _jsx(_Card2.default, {
+            info: info,
+            player: player,
+            team: team
+        }), _jsx("div", {
+            style: outputcontainer
+        }, void 0, _jsx(_Averages2.default, {
+            averages: averages,
+            team: team
+        })));
     }
-
-    _createClass(App, [{
-        key: "handleChange",
-        value: function handleChange(value) {
-            var _this2 = this;
-
-            var player = _nba2.default.findPlayer(value);
-            if (player === undefined) {
-                alert("Could not find a player by that name");
-            } else {
-                var info = _nba2.default.stats.playerInfo({ PlayerID: player.playerId });
-                var averages = _nba2.default.stats.playerProfile({
-                    PlayerID: player.playerId
-                });
-
-                Promise.all([info, averages]).then(function (values) {
-                    if (values != undefined) {
-                        _this2.setState({
-                            player: values[0].commonPlayerInfo[0].displayFirstLast,
-                            team: values[0].commonPlayerInfo[0].teamAbbreviation,
-                            averages: values[1],
-                            info: values[0]
-                        });
-                    } else {
-                        return null;
-                    }
-                }, function (err) {
-                    console.warn(err);
-                });
-            }
-
-            return null;
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            console.log(this.props.store.getState());
-            if (this.state.player === undefined) {
-                return _jsx("div", {}, void 0, _jsx(_Input2.default, {
-                    handleChange: this.handleChange
-                }));
-            } else {
-                return _jsx("div", {}, void 0, _jsx(_Input2.default, {
-                    handleChange: this.handleChange
-                }), _jsx(_Card2.default, {
-                    info: this.state.info,
-                    player: this.state.player,
-                    team: this.state.team
-                }), _jsx("div", {
-                    style: outputcontainer
-                }, void 0, _jsx(_Averages2.default, {
-                    averages: this.state.averages,
-                    team: this.state.team
-                })));
-            }
-        }
-    }]);
-
-    return App;
-}(_react2.default.Component);
+};
 
 exports.default = App;
 
@@ -34807,8 +34785,6 @@ var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" &
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-exports.default = Input;
-
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -34832,8 +34808,8 @@ var logo = {
     width: "6%"
 };
 
-function Input() {
-    var _this = this;
+var Input = function Input(_ref) {
+    var handleChange = _ref.handleChange;
 
     var _useState = (0, _react.useState)(null),
         _useState2 = _slicedToArray(_useState, 2),
@@ -34850,17 +34826,16 @@ function Input() {
         options = _useState6[0],
         setOptions = _useState6[1];
 
-    handleChange = function handleChange(value) {
-
+    var handleSelect = function handleSelect(value) {
         setPlayerObj(value);
         setPlayer(value.fullName);
 
-        if (_this.props.handleChange) {
-            _this.props.handleChange(value.fullName);
+        if (handleChange) {
+            handleChange(value.fullName);
         }
     };
 
-    useEffect(function () {
+    (0, _react.useEffect)(function () {
         setOptions(_nba2.default.players);
     }, []);
 
@@ -34874,13 +34849,14 @@ function Input() {
         getOptionLabel: function getOptionLabel(option) {
             return option.fullName;
         },
-        options: this.state.options,
-        value: this.state.playerObj,
-        onChange: this.handleChange,
-        searchable: this.state.searchable,
+        options: options,
+        value: playerObj,
+        onChange: handleSelect,
         placeholder: "Select an NBA player"
     }));
-}
+};
+
+exports.default = Input;
 
 /***/ }),
 /* 117 */
@@ -45385,7 +45361,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _jsx = function () { var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7; return function createRawReactElement(type, props, key, children) { var defaultProps = type && type.defaultProps; var childrenLength = arguments.length - 3; if (!props && childrenLength !== 0) { props = {}; } if (props && defaultProps) { for (var propName in defaultProps) { if (props[propName] === void 0) { props[propName] = defaultProps[propName]; } } } else if (!props) { props = defaultProps || {}; } if (childrenLength === 1) { props.children = children; } else if (childrenLength > 1) { var childArray = Array(childrenLength); for (var i = 0; i < childrenLength; i++) { childArray[i] = arguments[i + 3]; } props.children = childArray; } return { $$typeof: REACT_ELEMENT_TYPE, type: type, key: key === undefined ? null : '' + key, ref: null, props: props, _owner: null }; }; }();
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _react = __webpack_require__(1);
 
@@ -45398,12 +45374,6 @@ var _Info = __webpack_require__(41);
 var _Info2 = _interopRequireDefault(_Info);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 //Styling.
 var nameStyle = {
@@ -45429,63 +45399,52 @@ var card_info = {
     flexGrow: "2"
 };
 
-var Card = function (_React$Component) {
-    _inherits(Card, _React$Component);
+var Card = function Card(props) {
+    var _useState = (0, _react.useState)(props.player),
+        _useState2 = _slicedToArray(_useState, 2),
+        playerName = _useState2[0],
+        setPlayerName = _useState2[1];
 
-    function Card(props) {
-        _classCallCheck(this, Card);
+    var _useState3 = (0, _react.useState)(props.info),
+        _useState4 = _slicedToArray(_useState3, 2),
+        playerInfo = _useState4[0],
+        setPlayerInfo = _useState4[1];
 
-        var _this = _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));
+    var _useState5 = (0, _react.useState)(props.team),
+        _useState6 = _slicedToArray(_useState5, 2),
+        playerTeam = _useState6[0],
+        setTeam = _useState6[1];
 
-        _this.state = {
-            playerName: props.player,
-            playerInfo: props.info.commonPlayerInfo[0],
-            team: props.team
-        };
-        return _this;
+    (0, _react.useEffect)(function () {
+        setPlayerName(props.player);
+        setTeam(props.team);
+        setPlayerInfo(props.info);
+    }, [props]);
+
+    if (playerInfo !== undefined) {
+        console.log(playerInfo);
+        var url = "https://nba-players.herokuapp.com/players/" + playerInfo.commonPlayerInfo[0].lastName + "/" + playerInfo.commonPlayerInfo[0].firstName;
+        return _jsx("div", {
+            style: cardContainer
+        }, void 0, _jsx("img", {
+            style: headshot,
+            src: url,
+            alt: "Player headshot"
+        }), _jsx("div", {
+            style: card_info
+        }, void 0, _jsx("div", {
+            style: nameStyle
+        }, void 0, playerInfo.commonPlayerInfo[0].displayFirstLast, _jsx("img", {
+            src: __webpack_require__(154)
+        })), _jsx("div", {
+            style: teamStyle
+        }, void 0, playerInfo.commonPlayerInfo[0].teamCity, " ", playerInfo.commonPlayerInfo[0].teamName, "\xA0", "\xA0", playerInfo.commonPlayerInfo[0].jersey, " ")), _jsx(_Info2.default, {
+            info: playerInfo,
+            team: playerTeam
+        }));
     }
-
-    _createClass(Card, [{
-        key: "componentDidUpdate",
-        value: function componentDidUpdate(props, state) {
-            if (this.props.info != props.info) {
-                this.setState({
-                    playerInfo: this.props.info.commonPlayerInfo[0],
-                    team: this.props.team,
-                    playerName: this.props.player
-                });
-            }
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            if (this.state.playerInfo !== undefined) {
-                var url = "https://nba-players.herokuapp.com/players/" + this.state.playerInfo.lastName + "/" + this.state.playerInfo.firstName;
-                return _jsx("div", {
-                    style: cardContainer
-                }, void 0, _jsx("img", {
-                    style: headshot,
-                    src: url,
-                    alt: "Player headshot"
-                }), _jsx("div", {
-                    style: card_info
-                }, void 0, _jsx("div", {
-                    style: nameStyle
-                }, void 0, this.state.playerInfo.displayFirstLast, _jsx("img", {
-                    src: __webpack_require__(154)
-                })), _jsx("div", {
-                    style: teamStyle
-                }, void 0, this.state.playerInfo.teamCity, " ", this.state.playerInfo.teamName, "\xA0", "\xA0", this.state.playerInfo.jersey, " ")), _jsx(_Info2.default, {
-                    info: this.props.info,
-                    team: this.props.team
-                }));
-            }
-            return null;
-        }
-    }]);
-
-    return Card;
-}(_react2.default.Component);
+    return null;
+};
 
 exports.default = Card;
 

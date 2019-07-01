@@ -1,8 +1,7 @@
 "use-strict";
 
-import React from "react";
+import React, { useState , useEffect} from 'react';
 import { } from "../../scss/teamColors.scss";
-
 
 const info_container = {
     fontSize: "18px",
@@ -26,58 +25,55 @@ const formatDate = d => {
     return month + "-" + dt + "-" + year;
 };
 
-export default class Info extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            playerInfo: props.info.commonPlayerInfo[0]
-        };
-    }
+const Info = (props) => {
+ 
+ const [playerInfo, setPlayerInfo] = useState(props.info.commonPlayerInfo[0]) 
+   
+    // static getDerivedStateFromProps(nextProps, prevState){
+    //     if(nextProps.info.commonPlayerInfo[0] !== prevState.playerInfo){
+    //       return { playerInfo: nextProps.info.commonPlayerInfo[0]};
+    //    }
+    //    else return null;
+    //  }
 
-    static getDerivedStateFromProps(nextProps, prevState){
-        if(nextProps.info.commonPlayerInfo[0] !== prevState.playerInfo){
-          return { playerInfo: nextProps.info.commonPlayerInfo[0]};
-       }
-       else return null;
-     }
-
-    render() {
-        if (this.state.playerInfo !== undefined) {
-            var birthDate = formatDate(this.state.playerInfo.birthdate);
-            return (
-                <div style={info_container}>
-                    <div>
-                        <p>
-                            <b>Position:</b> {this.state.playerInfo.position}
-                        </p>
-                        <p>
-                            <b>Date Of Birth:</b> {birthDate}{" "}
-                        </p>
-                        <p>
-                            <b>Height:</b> {this.state.playerInfo.height}
-                        </p>
-                        <p>
-                            <b>Weight:</b> {this.state.playerInfo.weight}
-                        </p>
-                        <p>
-                            <b>Seasons in league:</b>{" "}
-                            {this.state.playerInfo.seasonExp}
-                        </p>
-                        <p>
-                            <b>Draft Year:</b> {this.state.playerInfo.draftYear}
-                        </p>
-                        <p>
-                            <b>Draft Round:</b>{" "}
-                            {this.state.playerInfo.draftRound}
-                        </p>
-                        <p>
-                            <b>Draft Number:</b>{" "}
-                            {this.state.playerInfo.draftNumber}
-                        </p>
-                    </div>
+   // render() {
+    if (playerInfo !== undefined) {
+        var birthDate = formatDate(playerInfo.birthdate);
+        return (
+            <div style={info_container}>
+                <div>
+                    <p>
+                        <b>Position:</b> {playerInfo.position}
+                    </p>
+                    <p>
+                        <b>Date Of Birth:</b> {birthDate}{" "}
+                    </p>
+                    <p>
+                        <b>Height:</b> {playerInfo.height}
+                    </p>
+                    <p>
+                        <b>Weight:</b> {playerInfo.weight}
+                    </p>
+                    <p>
+                        <b>Seasons in league:</b>{" "}
+                        {playerInfo.seasonExp}
+                    </p>
+                    <p>
+                        <b>Draft Year:</b> {playerInfo.draftYear}
+                    </p>
+                    <p>
+                        <b>Draft Round:</b>{" "}
+                        {playerInfo.draftRound}
+                    </p>
+                    <p>
+                        <b>Draft Number:</b>{" "}
+                        {playerInfo.draftNumber}
+                    </p>
                 </div>
-            );
-        }
-        return null;
+            </div>
+        );
     }
+    else { return null; }
 }
+
+export default Info;
