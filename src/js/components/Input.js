@@ -7,7 +7,7 @@ var logo = {
     display: "block",
     marginLeft: "auto",
     marginRight: "auto",
-    width: "6%"
+    width: "8%"
 };
 
 const Input = ({handleChange}) => {

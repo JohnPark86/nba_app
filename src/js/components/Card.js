@@ -34,17 +34,15 @@ const Card = (props) => {
     const [playerInfo, setPlayerInfo] = useState(props.info)
     const [playerTeam, setTeam] = useState(props.team)
 
-   
     useEffect( () => {
         setPlayerName(props.player)
         setTeam(props.team)
         setPlayerInfo(props.info)
     }, [props]);
 
-    
     if (playerInfo !== undefined) {
-        console.log(playerInfo)
-        var url =
+        console.log(playerTeam)
+        let url =
             "https://nba-players.herokuapp.com/players/" +
             playerInfo.commonPlayerInfo[0].lastName +
             "/" +
@@ -56,7 +54,7 @@ const Card = (props) => {
                     <div style={nameStyle}>
                         {playerInfo.commonPlayerInfo[0].displayFirstLast}
                         <img
-                            src={require("../../img/team-logos/OKC.svg")}
+                            src={require("../../img/team-logos/" + playerTeam + ".svg")}
                         />
                     </div>
                     <div style={teamStyle}>
