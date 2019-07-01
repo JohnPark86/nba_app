@@ -33,14 +33,14 @@ const Averages = (props) => {
 			Header: 'Blocks',
 			accessor: 'blk'
 		},
-		{
-			Header: 'Rebounds (Def)',
-			accessor: 'dreb'
-		},
-		{
-			Header: 'Rebounds (Off)',
-			accessor: 'oreb'
-		},
+		// {
+		// 	Header: 'Rebounds (Def)',
+		// 	accessor: 'dreb'
+		// },
+		// {
+		// 	Header: 'Rebounds (Off)',
+		// 	accessor: 'oreb'
+		// },
 		{
 			Header: 'Rebounds (total)',
 			accessor: 'reb'
@@ -49,10 +49,10 @@ const Averages = (props) => {
 			Header: 'Points',
 			accessor: 'pts'
 		},
-		{
-			Header: 'Field Goals',
-			accessor: 'fgm'
-		},
+		// {
+		// 	Header: 'Field Goals',
+		// 	accessor: 'fgm'
+		// },
 		{
 			Header: '3 Pointers',
 			accessor: 'fG3M'
@@ -65,10 +65,10 @@ const Averages = (props) => {
 			Header: 'Games Played',
 			accessor: 'gp'
 		},
-		{
-			Header: 'Minutes Per Game',
-			accessor: 'min'
-		},
+		// {
+		// 	Header: 'Minutes Per Game',
+		// 	accessor: 'min'
+		// },
 		{
 			Header: 'Personal Fouls',
 			accessor: 'pf'
