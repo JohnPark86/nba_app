@@ -29,14 +29,6 @@ const Info = (props) => {
  
  const [playerInfo, setPlayerInfo] = useState(props.info.commonPlayerInfo[0]) 
    
-    // static getDerivedStateFromProps(nextProps, prevState){
-    //     if(nextProps.info.commonPlayerInfo[0] !== prevState.playerInfo){
-    //       return { playerInfo: nextProps.info.commonPlayerInfo[0]};
-    //    }
-    //    else return null;
-    //  }
-
-   // render() {
     if (playerInfo !== undefined) {
         var birthDate = formatDate(playerInfo.birthdate);
         return (

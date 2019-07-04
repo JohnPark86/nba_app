@@ -4,7 +4,7 @@
   "description": "an app used to access nba.com endpoints",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "jest",
     "dev-server": "webpack-dev-server --open",
     "build": "webpack --config ./webpack.config.js --verbose --progress --colors"
   },
