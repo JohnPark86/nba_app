@@ -2,6 +2,9 @@
   "plugins": [
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",
+    "@babel/plugin-transform-react-inline-elements",
+    "@babel/plugin-transform-react-constant-elements",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }], 
     [
       "@babel/plugin-proposal-class-properties"
     ],
@@ -12,5 +15,7 @@
     ["transform-es2015-modules-commonjs", {
       "allowTopLevelThis": true
     }]
-  ]
+  ],
+    "presets": ["@babel/preset-react","@babel/preset-env"]
+  
 }
