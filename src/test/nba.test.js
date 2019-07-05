@@ -1,9 +1,7 @@
 import NBA from "nba";
 
-
+//This just verifies the NBA package is still working.
 test('Checks to make sure Stephen Curry is return value', () => {  
-    return NBA.findPlayer('Stephen Curry').then(data => {
-        console.log(data)
-        expect(data).toBe('peanut butter');
-    });
-  });
+    let player = NBA.findPlayer('Stephen Curry');
+    expect(player.fullName).toBe('Stephen Curry');
+});

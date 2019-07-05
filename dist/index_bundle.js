@@ -4738,16 +4738,6 @@ var Info = function Info(props) {
         playerInfo = _useState2[0],
         setPlayerInfo = _useState2[1];
 
-    // static getDerivedStateFromProps(nextProps, prevState){
-    //     if(nextProps.info.commonPlayerInfo[0] !== prevState.playerInfo){
-    //       return { playerInfo: nextProps.info.commonPlayerInfo[0]};
-    //    }
-    //    else return null;
-    //  }
-
-    // render() {
-
-
     if (playerInfo !== undefined) {
         var birthDate = formatDate(playerInfo.birthdate);
         return _jsx("div", {
